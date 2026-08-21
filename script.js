@@ -4,213 +4,333 @@ const mobileNav = document.getElementById("mobileNav");
 if (menuToggle && mobileNav) {
   menuToggle.addEventListener("click", () => {
     const open = mobileNav.classList.toggle("open");
-    menuToggle.setAttribute("aria-expanded", String(open));
-    document.body.classList.toggle("menu-open", open);
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      String(open)
+    );
+
+    document.body.classList.toggle(
+      "menu-open",
+      open
+    );
   });
 
-  mobileNav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      mobileNav.classList.remove("open");
-      document.body.classList.remove("menu-open");
-      menuToggle.setAttribute("aria-expanded", "false");
+  mobileNav
+    .querySelectorAll("a")
+    .forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileNav.classList.remove("open");
+        document.body.classList.remove("menu-open");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+      });
     });
-  });
 }
 
+
 window.addEventListener("resize", () => {
-  if (window.innerWidth > 850 && mobileNav && menuToggle) {
+  if (
+    window.innerWidth > 850 &&
+    mobileNav &&
+    menuToggle
+  ) {
     mobileNav.classList.remove("open");
     document.body.classList.remove("menu-open");
-    menuToggle.setAttribute("aria-expanded", "false");
+
+    menuToggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
   }
 });
 
-const revealItems = document.querySelectorAll(".reveal");
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealItems =
+  document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+  const observer =
+    new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(
+              "visible"
+            );
+
+            obs.unobserve(
+              entry.target
+            );
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin:
+          "0px 0px -40px 0px",
+      }
+    );
+
+  revealItems.forEach((item) => {
+    observer.observe(item);
+  });
+} else {
+  revealItems.forEach((item) => {
+    item.classList.add("visible");
+  });
+}
+
+
+/* =========================
+   PORTFOLIO FILTER
+========================= */
+
+const filterButtons =
+  document.querySelectorAll(
+    ".filter-btn"
+  );
+
+const portfolioCards =
+  document.querySelectorAll(
+    ".portfolio-card"
+  );
+
+filterButtons.forEach((button) => {
+  button.addEventListener(
+    "click",
+    () => {
+      const filter =
+        button.dataset.filter;
+
+      filterButtons.forEach(
+        (btn) => {
+          btn.classList.remove(
+            "active"
+          );
         }
-      });
-    },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px",
+      );
+
+      button.classList.add(
+        "active"
+      );
+
+      portfolioCards.forEach(
+        (card) => {
+          card.classList.toggle(
+            "hide",
+            filter !== "all" &&
+              card.dataset.category !==
+                filter
+          );
+        }
+      );
+    }
+  );
+});
+
+
+/* =========================
+   TESTIMONIAL READ MORE
+========================= */
+
+const reviewMore =
+  document.querySelector(
+    ".review-more"
+  );
+
+const reviewFull =
+  document.querySelector(
+    ".review-full"
+  );
+
+if (reviewMore && reviewFull) {
+  reviewMore.addEventListener(
+    "click",
+    () => {
+      const expanded =
+        reviewMore.getAttribute(
+          "aria-expanded"
+        ) === "true";
+
+      reviewMore.setAttribute(
+        "aria-expanded",
+        String(!expanded)
+      );
+
+      reviewFull.hidden =
+        expanded;
+
+      reviewMore.innerHTML =
+        expanded
+          ? 'Read More <span>→</span>'
+          : 'Show Less <span>↑</span>';
+    }
+  );
+}
+
+
+/* =========================
+   ACTIVE NAVIGATION
+========================= */
+
+const sections =
+  document.querySelectorAll(
+    "main section[id]"
+  );
+
+const desktopLinks =
+  document.querySelectorAll(
+    ".desktop-nav a"
+  );
+
+function updateNav() {
+  let current = "";
+
+  const position =
+    window.scrollY + 130;
+
+  sections.forEach(
+    (section) => {
+      if (
+        position >=
+          section.offsetTop &&
+        position <
+          section.offsetTop +
+            section.offsetHeight
+      ) {
+        current =
+          section.id;
+      }
     }
   );
 
-  revealItems.forEach((item) => revealObserver.observe(item));
-} else {
-  revealItems.forEach((item) => item.classList.add("visible"));
-}
-
-window.addEventListener("load", () => {
-  document.querySelectorAll(".hero .reveal").forEach((item, index) => {
-    setTimeout(() => {
-      item.classList.add("visible");
-    }, index * 160);
-  });
-});
-
-const filterButtons = document.querySelectorAll(".filter-btn");
-const portfolioCards = document.querySelectorAll(".portfolio-card");
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const filter = button.dataset.filter;
-
-    filterButtons.forEach((btn) => {
-      btn.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    portfolioCards.forEach((card) => {
-      card.classList.toggle(
-        "hide",
-        filter !== "all" && card.dataset.category !== filter
+  desktopLinks.forEach(
+    (link) => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute(
+          "href"
+        ) === `#${current}`
       );
-    });
-  });
-});
-
-const reviewMore = document.querySelector(".review-more");
-const reviewFull = document.querySelector(".review-full");
-
-if (reviewMore && reviewFull) {
-  reviewMore.addEventListener("click", () => {
-    const expanded =
-      reviewMore.getAttribute("aria-expanded") === "true";
-
-    reviewMore.setAttribute(
-      "aria-expanded",
-      String(!expanded)
-    );
-
-    reviewFull.hidden = expanded;
-
-    reviewMore.innerHTML = expanded
-      ? 'Read More <span>→</span>'
-      : 'Show Less <span>↑</span>';
-  });
-}
-
-const sections = document.querySelectorAll("main section[id]");
-const desktopLinks = document.querySelectorAll(".desktop-nav a");
-
-function updateActiveNavigation() {
-  const position = window.scrollY + 155;
-  let current = "";
-
-  sections.forEach((section) => {
-    if (
-      position >= section.offsetTop &&
-      position < section.offsetTop + section.offsetHeight
-    ) {
-      current = section.id;
     }
-  });
-
-  desktopLinks.forEach((link) => {
-    link.classList.toggle(
-      "active",
-      link.getAttribute("href") === `#${current}`
-    );
-  });
+  );
 }
 
 window.addEventListener(
   "scroll",
-  updateActiveNavigation,
-  { passive: true }
+  updateNav,
+  {
+    passive: true,
+  }
 );
 
 window.addEventListener(
   "load",
-  updateActiveNavigation
+  updateNav
 );
 
-const siteHeader = document.getElementById("siteHeader");
 
-function updateHeaderShadow() {
-  if (!siteHeader) return;
+/* =========================
+   HEADER SHADOW
+========================= */
 
-  siteHeader.style.boxShadow =
+const header =
+  document.getElementById(
+    "siteHeader"
+  );
+
+function headerShadow() {
+  if (!header) return;
+
+  header.style.boxShadow =
     window.scrollY > 20
-      ? "0 8px 30px rgba(6,26,53,.08)"
+      ? "0 10px 35px rgba(0,0,0,.28)"
       : "none";
 }
 
 window.addEventListener(
   "scroll",
-  updateHeaderShadow,
-  { passive: true }
+  headerShadow,
+  {
+    passive: true,
+  }
 );
 
 window.addEventListener(
   "load",
-  updateHeaderShadow
+  headerShadow
 );
 
-const contactForm = document.getElementById("contactForm");
+
+/* =========================
+   CONTACT FORM
+========================= */
+
+const contactForm =
+  document.getElementById(
+    "contactForm"
+  );
 
 if (contactForm) {
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+  contactForm.addEventListener(
+    "submit",
+    (event) => {
+      event.preventDefault();
 
-    const name =
-      document.getElementById("name").value.trim();
+      const getValue = (id) =>
+        document
+          .getElementById(id)
+          .value
+          .trim();
 
-    const email =
-      document.getElementById("email").value.trim();
-
-    const phone =
-      document.getElementById("phone").value.trim();
-
-    const company =
-      document.getElementById("company").value.trim();
-
-    const service =
-      document.getElementById("service").value;
-
-    const message =
-      document.getElementById("message").value.trim();
-
-    const whatsappMessage =
+      const message =
 `Hi StrategyClick,
 
 I'm interested in your digital marketing services.
 
-Name: ${name}
-Business: ${company || "Not provided"}
-Phone: ${phone}
-Email: ${email || "Not provided"}
-Service: ${service}
+Name: ${getValue("name")}
+Business: ${getValue("company") || "Not provided"}
+Phone: ${getValue("phone")}
+Email: ${getValue("email") || "Not provided"}
+Service: ${getValue("service")}
 
 Requirement:
-${message}`;
+${getValue("message")}`;
 
-    const whatsappNumber = "919159596960";
+      const whatsappNumber =
+        "919159596960";
 
-    const whatsappURL =
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-        whatsappMessage
-      )}`;
+      const whatsappURL =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          message
+        )}`;
 
-    window.open(
-      whatsappURL,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  });
+      window.open(
+        whatsappURL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+  );
 }
 
+
+/* =========================
+   CURRENT YEAR
+========================= */
+
 const footerText =
-  document.querySelector(".footer-bottom p");
+  document.querySelector(
+    ".footer-bottom p"
+  );
 
 if (footerText) {
   footerText.textContent =
