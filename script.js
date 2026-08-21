@@ -1,266 +1,127 @@
-/* =========================================================
-   STRATEGYCLICK — MAIN JAVASCRIPT
-========================================================= */
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
 const menuToggle = document.getElementById("menuToggle");
 const mobileNav = document.getElementById("mobileNav");
 
 if (menuToggle && mobileNav) {
-
   menuToggle.addEventListener("click", () => {
-
-    const isOpen = mobileNav.classList.toggle("open");
-
-    menuToggle.setAttribute(
-      "aria-expanded",
-      isOpen ? "true" : "false"
-    );
-
-    document.body.classList.toggle("menu-open", isOpen);
-
+    const open = mobileNav.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("menu-open", open);
   });
 
-
-  const mobileLinks = mobileNav.querySelectorAll("a");
-
-  mobileLinks.forEach((link) => {
-
+  mobileNav.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-
       mobileNav.classList.remove("open");
-
       document.body.classList.remove("menu-open");
-
-      menuToggle.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
+      menuToggle.setAttribute("aria-expanded", "false");
     });
-
   });
-
 }
 
-
-/* =========================
-   CLOSE MOBILE MENU
-   WHEN WINDOW RESIZES
-========================= */
-
 window.addEventListener("resize", () => {
-
   if (window.innerWidth > 850 && mobileNav && menuToggle) {
-
     mobileNav.classList.remove("open");
-
     document.body.classList.remove("menu-open");
-
-    menuToggle.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
+    menuToggle.setAttribute("aria-expanded", "false");
   }
-
 });
 
+const revealItems = document.querySelectorAll(".reveal");
 
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const revealElements =
-  document.querySelectorAll(".reveal");
-
-
-const revealObserver =
-  new IntersectionObserver(
-
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
     (entries, observer) => {
-
       entries.forEach((entry) => {
-
         if (entry.isIntersecting) {
-
           entry.target.classList.add("visible");
-
           observer.unobserve(entry.target);
-
         }
-
       });
-
     },
-
     {
       threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px"
+      rootMargin: "0px 0px -40px 0px",
     }
-
   );
 
-
-revealElements.forEach((element) => {
-
-  revealObserver.observe(element);
-
-});
-
-
-/* =========================
-   HERO INITIAL REVEAL
-========================= */
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("visible"));
+}
 
 window.addEventListener("load", () => {
-
-  const heroReveal =
-    document.querySelectorAll(
-      ".hero .reveal"
-    );
-
-  heroReveal.forEach((element, index) => {
-
+  document.querySelectorAll(".hero .reveal").forEach((item, index) => {
     setTimeout(() => {
-
-      element.classList.add("visible");
-
-    }, index * 180);
-
+      item.classList.add("visible");
+    }, index * 160);
   });
-
 });
 
-
-/* =========================
-   PORTFOLIO FILTER
-========================= */
-
-const filterButtons =
-  document.querySelectorAll(".filter-btn");
-
-const portfolioCards =
-  document.querySelectorAll(".portfolio-card");
-
+const filterButtons = document.querySelectorAll(".filter-btn");
+const portfolioCards = document.querySelectorAll(".portfolio-card");
 
 filterButtons.forEach((button) => {
-
   button.addEventListener("click", () => {
-
-    const filter =
-      button.getAttribute("data-filter");
-
-
-    /* ACTIVE BUTTON */
+    const filter = button.dataset.filter;
 
     filterButtons.forEach((btn) => {
-
       btn.classList.remove("active");
-
     });
 
     button.classList.add("active");
 
-
-    /* FILTER PROJECTS */
-
     portfolioCards.forEach((card) => {
-
-      const category =
-        card.getAttribute("data-category");
-
-
-      if (
-        filter === "all" ||
-        category === filter
-      ) {
-
-        card.classList.remove("hide");
-
-      } else {
-
-        card.classList.add("hide");
-
-      }
-
+      card.classList.toggle(
+        "hide",
+        filter !== "all" && card.dataset.category !== filter
+      );
     });
-
   });
-
 });
 
+const reviewMore = document.querySelector(".review-more");
+const reviewFull = document.querySelector(".review-full");
 
-/* =========================
-   DESKTOP ACTIVE NAVIGATION
-========================= */
+if (reviewMore && reviewFull) {
+  reviewMore.addEventListener("click", () => {
+    const expanded =
+      reviewMore.getAttribute("aria-expanded") === "true";
 
-const sections =
-  document.querySelectorAll(
-    "main section[id]"
-  );
+    reviewMore.setAttribute(
+      "aria-expanded",
+      String(!expanded)
+    );
 
-const desktopLinks =
-  document.querySelectorAll(
-    ".desktop-nav a"
-  );
+    reviewFull.hidden = expanded;
 
-
-function updateActiveNavigation() {
-
-  let currentSection = "";
-
-  const scrollPosition =
-    window.scrollY + 150;
-
-
-  sections.forEach((section) => {
-
-    const sectionTop =
-      section.offsetTop;
-
-    const sectionHeight =
-      section.offsetHeight;
-
-
-    if (
-      scrollPosition >= sectionTop &&
-      scrollPosition <
-      sectionTop + sectionHeight
-    ) {
-
-      currentSection =
-        section.getAttribute("id");
-
-    }
-
+    reviewMore.innerHTML = expanded
+      ? 'Read More <span>→</span>'
+      : 'Show Less <span>↑</span>';
   });
-
-
-  desktopLinks.forEach((link) => {
-
-    link.classList.remove("active");
-
-    const href =
-      link.getAttribute("href");
-
-
-    if (
-      href === `#${currentSection}`
-    ) {
-
-      link.classList.add("active");
-
-    }
-
-  });
-
 }
 
+const sections = document.querySelectorAll("main section[id]");
+const desktopLinks = document.querySelectorAll(".desktop-nav a");
+
+function updateActiveNavigation() {
+  const position = window.scrollY + 155;
+  let current = "";
+
+  sections.forEach((section) => {
+    if (
+      position >= section.offsetTop &&
+      position < section.offsetTop + section.offsetHeight
+    ) {
+      current = section.id;
+    }
+  });
+
+  desktopLinks.forEach((link) => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === `#${current}`
+    );
+  });
+}
 
 window.addEventListener(
   "scroll",
@@ -273,111 +134,53 @@ window.addEventListener(
   updateActiveNavigation
 );
 
+const siteHeader = document.getElementById("siteHeader");
 
-/* =========================
-   SMOOTH INTERNAL LINKS
-========================= */
+function updateHeaderShadow() {
+  if (!siteHeader) return;
 
-const internalLinks =
-  document.querySelectorAll(
-    'a[href^="#"]'
-  );
+  siteHeader.style.boxShadow =
+    window.scrollY > 20
+      ? "0 8px 30px rgba(6,26,53,.08)"
+      : "none";
+}
 
+window.addEventListener(
+  "scroll",
+  updateHeaderShadow,
+  { passive: true }
+);
 
-internalLinks.forEach((link) => {
+window.addEventListener(
+  "load",
+  updateHeaderShadow
+);
 
-  link.addEventListener("click", (event) => {
-
-    const targetID =
-      link.getAttribute("href");
-
-
-    if (
-      !targetID ||
-      targetID === "#"
-    ) {
-
-      return;
-
-    }
-
-
-    const targetElement =
-      document.querySelector(targetID);
-
-
-    if (targetElement) {
-
-      event.preventDefault();
-
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-
-    }
-
-  });
-
-});
-
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-const contactForm =
-  document.getElementById("contactForm");
-
+const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  contactForm.addEventListener(
-    "submit",
-    (event) => {
+    const name =
+      document.getElementById("name").value.trim();
 
-      event.preventDefault();
+    const email =
+      document.getElementById("email").value.trim();
 
+    const phone =
+      document.getElementById("phone").value.trim();
 
-      const name =
-        document
-          .getElementById("name")
-          .value
-          .trim();
+    const company =
+      document.getElementById("company").value.trim();
 
-      const company =
-        document
-          .getElementById("company")
-          .value
-          .trim();
+    const service =
+      document.getElementById("service").value;
 
-      const phone =
-        document
-          .getElementById("phone")
-          .value
-          .trim();
+    const message =
+      document.getElementById("message").value.trim();
 
-      const email =
-        document
-          .getElementById("email")
-          .value
-          .trim();
-
-      const service =
-        document
-          .getElementById("service")
-          .value;
-
-      const message =
-        document
-          .getElementById("message")
-          .value
-          .trim();
-
-
-      /* WHATSAPP MESSAGE */
-
-      const whatsappMessage =
+    const whatsappMessage =
 `Hi StrategyClick,
 
 I'm interested in your digital marketing services.
@@ -391,93 +194,25 @@ Service: ${service}
 Requirement:
 ${message}`;
 
+    const whatsappNumber = "919159596960";
 
-      const encodedMessage =
-        encodeURIComponent(
-          whatsappMessage
-        );
+    const whatsappURL =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        whatsappMessage
+      )}`;
 
-
-      /* STRATEGYCLICK WHATSAPP NUMBER */
-
-      const whatsappNumber =
-        "919159596960";
-
-
-      const whatsappURL =
-        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-
-      window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-    }
-
-  );
-
+    window.open(
+      whatsappURL,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  });
 }
-
-
-/* =========================
-   HEADER SHADOW ON SCROLL
-========================= */
-
-const header =
-  document.querySelector(".header");
-
-
-function updateHeader() {
-
-  if (!header) return;
-
-
-  if (window.scrollY > 20) {
-
-    header.style.boxShadow =
-      "0 8px 30px rgba(6, 26, 53, 0.08)";
-
-  } else {
-
-    header.style.boxShadow =
-      "none";
-
-  }
-
-}
-
-
-window.addEventListener(
-  "scroll",
-  updateHeader,
-  { passive: true }
-);
-
-window.addEventListener(
-  "load",
-  updateHeader
-);
-
-
-/* =========================
-   CURRENT YEAR
-========================= */
 
 const footerText =
-  document.querySelector(
-    ".footer-bottom p"
-  );
-
+  document.querySelector(".footer-bottom p");
 
 if (footerText) {
-
-  const currentYear =
-    new Date().getFullYear();
-
-
-  footerText.innerHTML =
-    `© ${currentYear} StrategyClick. All Rights Reserved.`;
-
+  footerText.textContent =
+    `© ${new Date().getFullYear()} StrategyClick. All Rights Reserved.`;
 }
