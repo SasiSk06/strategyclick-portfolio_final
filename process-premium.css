@@ -55,32 +55,40 @@
 }
 .process .section-head p span{display:block;}
 
+/* Strong navy halftone corner fades */
 .process::before,
 .process::after{
   content:"";
   position:absolute;
-  width:330px;
-  height:225px;
-  opacity:.12;
+  width:360px;
+  height:360px;
+  opacity:.34;
   pointer-events:none;
-  background-image:radial-gradient(#d49b1f 1px,transparent 1px);
-  background-size:14px 14px;
+  z-index:0;
+  background-image:radial-gradient(circle,#061A35 2px,transparent 2.15px);
+  background-size:10px 10px;
 }
-.process::before{top:14px;left:2.5%;}
-.process::after{right:1.5%;bottom:8px;}
+.process::before{
+  top:-78px;
+  left:-76px;
+  mask-image:radial-gradient(circle at 0 0,#000 0 22%,rgba(0,0,0,.98) 34%,rgba(0,0,0,.72) 50%,rgba(0,0,0,.34) 66%,transparent 84%);
+  -webkit-mask-image:radial-gradient(circle at 0 0,#000 0 22%,rgba(0,0,0,.98) 34%,rgba(0,0,0,.72) 50%,rgba(0,0,0,.34) 66%,transparent 84%);
+}
+.process::after{
+  right:-76px;
+  bottom:-78px;
+  mask-image:radial-gradient(circle at 100% 100%,#000 0 22%,rgba(0,0,0,.98) 34%,rgba(0,0,0,.72) 50%,rgba(0,0,0,.34) 66%,transparent 84%);
+  -webkit-mask-image:radial-gradient(circle at 100% 100%,#000 0 22%,rgba(0,0,0,.98) 34%,rgba(0,0,0,.72) 50%,rgba(0,0,0,.34) 66%,transparent 84%);
+}
 
+/* Remove old circular and triangle decorations */
 .process-decor-a,
-.process-decor-b{
-  position:absolute;
-  width:520px;
-  height:520px;
-  border:2px solid rgba(212,155,31,.24);
-  border-radius:50%;
-  pointer-events:none;
-  filter:drop-shadow(0 0 8px rgba(212,155,31,.16));
+.process-decor-b,
+.process .container::before,
+.process .container::after{
+  display:none!important;
+  content:none!important;
 }
-.process-decor-a{left:-388px;top:-368px;}
-.process-decor-b{right:-390px;bottom:-370px;}
 
 .process-flow{
   position:relative;
@@ -184,17 +192,13 @@
 .process-card:nth-child(4)::after{display:none;}
 .process-card:nth-child(5)::before{display:none;}
 
-.process .container::before,
-.process .container::after{content:"";position:absolute;width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:20px solid rgba(212,155,31,.10);filter:drop-shadow(0 0 4px rgba(212,155,31,.12));pointer-events:none;}
-.process .container::before{left:3.5%;top:46%;transform:rotate(-32deg);}
-.process .container::after{right:4%;top:18%;transform:rotate(18deg);}
-
 @media(max-width:1050px){
   .process{padding:92px 0 94px;}
   .process-flow{grid-template-columns:repeat(2,1fr);gap:22px;max-width:780px;}
   .process-flow::after{display:none;}
   .process-card,.process-card:nth-child(5),.process-card:nth-child(6),.process-card:nth-child(7){grid-column:auto;min-height:260px;}
   .process-card::after,.process-card::before{display:none!important;}
+  .process::before,.process::after{width:280px;height:280px;opacity:.28;background-size:9px 9px;}
 }
 
 @media(max-width:600px){
@@ -209,4 +213,5 @@
   .process-card b{width:50px;height:43px;font-size:16px;}
   .process-icon{width:72px;height:72px;}
   .process-icon svg,.process-icon svg *{width:36px;height:36px;}
+  .process::before,.process::after{width:210px;height:210px;opacity:.22;background-size:8px 8px;}
 }
