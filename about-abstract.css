@@ -1,4 +1,4 @@
-/* StrategyClick — About dotted corner accents */
+/* StrategyClick — About halftone fade corner accents */
 #about{
   position:relative;
   overflow:hidden;
@@ -17,53 +17,54 @@
   position:absolute;
   pointer-events:none;
   z-index:1;
-  width:300px;
-  height:220px;
-  opacity:.5;
-  background-image:
-    radial-gradient(circle, rgba(6,26,53,.34) 1.5px, transparent 1.6px),
-    radial-gradient(circle, rgba(244,197,66,.48) 1.2px, transparent 1.3px);
-  background-size:16px 16px, 32px 32px;
-  background-position:0 0, 8px 8px;
-  mask-image:linear-gradient(135deg,#000 0 52%,transparent 86%);
-  -webkit-mask-image:linear-gradient(135deg,#000 0 52%,transparent 86%);
+  width:340px;
+  height:340px;
+  opacity:.28;
+  background-image:radial-gradient(circle,#061A35 1.7px,transparent 1.8px);
+  background-size:11px 11px;
 }
 
 #about::before{
-  top:-28px;
-  left:-26px;
+  top:-72px;
+  left:-72px;
+  mask-image:radial-gradient(circle at 0 0,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
+  -webkit-mask-image:radial-gradient(circle at 0 0,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
 }
 
 #about::after{
-  right:-28px;
-  bottom:-30px;
-  transform:rotate(180deg);
+  right:-72px;
+  bottom:-72px;
+  mask-image:radial-gradient(circle at 100% 100%,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
+  -webkit-mask-image:radial-gradient(circle at 100% 100%,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
 }
 
-/* subtle oversized dot clusters for depth */
+/* keep existing About content clean; no extra polygon/shard decorations */
 #about .about-grid::before,
 #about .about-grid::after{
-  content:"";
-  position:absolute;
-  pointer-events:none;
-  z-index:-1;
-  width:120px;
-  height:90px;
-  opacity:.16;
-  background-image:radial-gradient(circle, var(--navy) 2px, transparent 2.2px);
-  background-size:18px 18px;
+  display:none!important;
+  content:none!important;
 }
-#about .about-grid::before{left:-48px;top:14%;}
-#about .about-grid::after{right:-42px;bottom:12%;background-image:radial-gradient(circle,var(--gold) 2px,transparent 2.2px);}
 
 @media(max-width:900px){
   #about::before,
-  #about::after{width:230px;height:170px;opacity:.4;}
+  #about::after{
+    width:260px;
+    height:260px;
+    opacity:.23;
+    background-size:10px 10px;
+  }
+  #about::before{top:-64px;left:-64px;}
+  #about::after{right:-64px;bottom:-64px;}
 }
 
 @media(max-width:600px){
   #about::before,
-  #about::after{width:170px;height:125px;opacity:.3;background-size:14px 14px,28px 28px;}
-  #about .about-grid::before,
-  #about .about-grid::after{display:none;}
+  #about::after{
+    width:190px;
+    height:190px;
+    opacity:.18;
+    background-size:9px 9px;
+  }
+  #about::before{top:-54px;left:-54px;}
+  #about::after{right:-54px;bottom:-54px;}
 }
