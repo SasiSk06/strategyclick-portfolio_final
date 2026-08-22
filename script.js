@@ -225,7 +225,7 @@ if (footerText) {
     const link = document.createElement("link");
     link.id = "processPremiumStyles";
     link.rel = "stylesheet";
-    link.href = "process-premium.css";
+    link.href = "process-premium.css?v=20260822-arrows-v2";
     document.head.appendChild(link);
   }
 
