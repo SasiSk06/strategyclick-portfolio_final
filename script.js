@@ -346,7 +346,7 @@ if (footerText) {
     const link = document.createElement("link");
     link.id = "processPremiumStyles";
     link.rel = "stylesheet";
-    link.href = "process-premium.css";
+    link.href = "process-fix.css";
     document.head.appendChild(link);
   }
 
