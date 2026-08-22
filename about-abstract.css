@@ -1,0 +1,78 @@
+/* StrategyClick — About abstract corner accents */
+#about{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+#about .container,
+#about .about-grid{
+  position:relative;
+  z-index:2;
+}
+
+#about::before,
+#about::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:1;
+}
+
+/* Left-top polygon burst inspired by the supplied reference */
+#about::before{
+  top:-44px;
+  left:-54px;
+  width:330px;
+  height:245px;
+  opacity:.78;
+  background:
+    linear-gradient(145deg,transparent 0 37%,rgba(6,26,53,.92) 37% 52%,transparent 52%) 0 18px/210px 110px no-repeat,
+    linear-gradient(32deg,transparent 0 39%,rgba(244,197,66,.96) 39% 55%,transparent 55%) 20px 72px/245px 128px no-repeat,
+    linear-gradient(158deg,transparent 0 44%,rgba(12,48,83,.88) 44% 62%,transparent 62%) 70px 8px/190px 116px no-repeat,
+    linear-gradient(22deg,transparent 0 42%,rgba(212,155,31,.66) 42% 59%,transparent 59%) 106px 92px/185px 96px no-repeat;
+  filter:drop-shadow(0 8px 18px rgba(6,26,53,.08));
+}
+
+/* Right-bottom polygon burst */
+#about::after{
+  right:-70px;
+  bottom:-58px;
+  width:360px;
+  height:260px;
+  opacity:.74;
+  background:
+    linear-gradient(326deg,transparent 0 38%,rgba(6,26,53,.93) 38% 54%,transparent 54%) 112px 70px/230px 132px no-repeat,
+    linear-gradient(210deg,transparent 0 40%,rgba(244,197,66,.94) 40% 57%,transparent 57%) 36px 118px/250px 126px no-repeat,
+    linear-gradient(342deg,transparent 0 45%,rgba(12,48,83,.84) 45% 62%,transparent 62%) 72px 18px/205px 120px no-repeat,
+    linear-gradient(196deg,transparent 0 42%,rgba(212,155,31,.62) 42% 58%,transparent 58%) 6px 84px/188px 102px no-repeat;
+  filter:drop-shadow(0 -8px 18px rgba(6,26,53,.07));
+}
+
+/* Small floating shards for the fragmented feel */
+#about .about-grid::before,
+#about .about-grid::after{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  z-index:-1;
+  width:18px;
+  height:18px;
+  background:var(--gold);
+  opacity:.24;
+  clip-path:polygon(50% 0,100% 100%,0 78%);
+}
+#about .about-grid::before{left:-30px;top:22%;transform:rotate(22deg);}
+#about .about-grid::after{right:-24px;bottom:19%;transform:rotate(-28deg);background:var(--navy);opacity:.18;}
+
+@media(max-width:900px){
+  #about::before{width:245px;height:185px;opacity:.52;left:-72px;top:-46px;}
+  #about::after{width:260px;height:195px;opacity:.48;right:-82px;bottom:-58px;}
+}
+
+@media(max-width:600px){
+  #about::before{width:185px;height:140px;opacity:.36;left:-76px;top:-40px;}
+  #about::after{width:190px;height:145px;opacity:.34;right:-78px;bottom:-48px;}
+  #about .about-grid::before,
+  #about .about-grid::after{display:none;}
+}
