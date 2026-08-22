@@ -263,6 +263,6 @@ if (footerText) {
   const link = document.createElement("link");
   link.id = "aboutAbstractStyles";
   link.rel = "stylesheet";
-  link.href = "about-abstract.css";
+  link.href = "about-abstract.css?v=20260822-dots-v2";
   document.head.appendChild(link);
 })();
