@@ -336,3 +336,41 @@ if (footerText) {
   footerText.textContent =
     `© ${new Date().getFullYear()} StrategyClick. All Rights Reserved.`;
 }
+
+/* =========================
+   PREMIUM PROCESS SECTION
+========================= */
+
+(function setupPremiumProcess(){
+  if (!document.getElementById("processPremiumStyles")) {
+    const link = document.createElement("link");
+    link.id = "processPremiumStyles";
+    link.rel = "stylesheet";
+    link.href = "process-premium.css";
+    document.head.appendChild(link);
+  }
+
+  const processSection = document.getElementById("process");
+  if (!processSection) return;
+
+  const processText = processSection.querySelector(".section-head p");
+  if (processText) {
+    processText.innerHTML =
+      '<span>A clear, proven process that turns strategy into results.</span>' +
+      '<span>We follow these 7 steps to ensure consistent, measurable success.</span>';
+  }
+
+  const svgIcons = [
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="19" cy="19" r="10"/><path d="M26 26l9 9"/><path d="M14 23v-6M19 23v-9M24 23v-4"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="22" cy="24" r="13"/><circle cx="22" cy="24" r="7"/><path d="M22 24l14-14M31 10h5v5"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 29c-3-2-5-6-5-10 0-7 5-12 12-12s12 5 12 12c0 4-2 8-5 10-2 2-3 3-3 6h-8c0-3-1-4-3-6Z"/><path d="M20 39h8M21 43h6"/><path d="M24 2v-2M9 8l-3-3M39 8l3-3"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 30 9 39l3-11L31 9c3-3 7-3 10-1l-1 8c0 5-4 9-9 9h-4"/><path d="M20 28l-6-1M27 21l6 6"/><circle cx="32" cy="16" r="2"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 38h32M12 34V23h6v11M22 34V15h6v19M32 34V9h6v25"/><path d="m10 17 9-7 7 4 12-10"/><circle cx="38" cy="4" r="2"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 38h32M12 34V25h6v9M22 34V19h6v15M32 34V11h6v23"/><path d="M10 19c7 0 10-5 14-8 4-3 8-4 14-5"/><path d="m34 4 4 2-2 4"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="12" y="8" width="24" height="32" rx="3"/><path d="M18 8V5h12v3M18 17h12M18 23h12M18 29h8"/><circle cx="32" cy="31" r="5"/><path d="M32 28v3l2 2"/></svg>'
+  ];
+
+  processSection.querySelectorAll(".process-icon").forEach((icon, index) => {
+    if (svgIcons[index]) icon.innerHTML = svgIcons[index];
+  });
+})();
