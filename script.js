@@ -31,7 +31,6 @@ if (menuToggle && mobileNav) {
     });
 }
 
-
 window.addEventListener("resize", () => {
   if (
     window.innerWidth > 850 &&
@@ -48,36 +47,27 @@ window.addEventListener("resize", () => {
   }
 });
 
-
 /* =========================
    SCROLL REVEAL
 ========================= */
 
-const revealItems =
-  document.querySelectorAll(".reveal");
+const revealItems = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
-  const observer =
-    new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(
-              "visible"
-            );
-
-            obs.unobserve(
-              entry.target
-            );
-          }
-        });
-      },
-      {
-        threshold: 0.12,
-        rootMargin:
-          "0px 0px -40px 0px",
-      }
-    );
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
 
   revealItems.forEach((item) => {
     observer.observe(item);
@@ -88,210 +78,112 @@ if ("IntersectionObserver" in window) {
   });
 }
 
-
 /* =========================
    PORTFOLIO FILTER
 ========================= */
 
-const filterButtons =
-  document.querySelectorAll(
-    ".filter-btn"
-  );
-
-const portfolioCards =
-  document.querySelectorAll(
-    ".portfolio-card"
-  );
+const filterButtons = document.querySelectorAll(".filter-btn");
+const portfolioCards = document.querySelectorAll(".portfolio-card");
 
 filterButtons.forEach((button) => {
-  button.addEventListener(
-    "click",
-    () => {
-      const filter =
-        button.dataset.filter;
+  button.addEventListener("click", () => {
+    const filter = button.dataset.filter;
 
-      filterButtons.forEach(
-        (btn) => {
-          btn.classList.remove(
-            "active"
-          );
-        }
-      );
+    filterButtons.forEach((btn) => {
+      btn.classList.remove("active");
+    });
 
-      button.classList.add(
-        "active"
-      );
+    button.classList.add("active");
 
-      portfolioCards.forEach(
-        (card) => {
-          card.classList.toggle(
-            "hide",
-            filter !== "all" &&
-              card.dataset.category !==
-                filter
-          );
-        }
+    portfolioCards.forEach((card) => {
+      card.classList.toggle(
+        "hide",
+        filter !== "all" && card.dataset.category !== filter
       );
-    }
-  );
+    });
+  });
 });
-
 
 /* =========================
    TESTIMONIAL READ MORE
 ========================= */
 
-const reviewMore =
-  document.querySelector(
-    ".review-more"
-  );
-
-const reviewFull =
-  document.querySelector(
-    ".review-full"
-  );
+const reviewMore = document.querySelector(".review-more");
+const reviewFull = document.querySelector(".review-full");
 
 if (reviewMore && reviewFull) {
-  reviewMore.addEventListener(
-    "click",
-    () => {
-      const expanded =
-        reviewMore.getAttribute(
-          "aria-expanded"
-        ) === "true";
+  reviewMore.addEventListener("click", () => {
+    const expanded = reviewMore.getAttribute("aria-expanded") === "true";
 
-      reviewMore.setAttribute(
-        "aria-expanded",
-        String(!expanded)
-      );
-
-      reviewFull.hidden =
-        expanded;
-
-      reviewMore.innerHTML =
-        expanded
-          ? 'Read More <span>→</span>'
-          : 'Show Less <span>↑</span>';
-    }
-  );
+    reviewMore.setAttribute("aria-expanded", String(!expanded));
+    reviewFull.hidden = expanded;
+    reviewMore.innerHTML = expanded
+      ? 'Read More <span>→</span>'
+      : 'Show Less <span>↑</span>';
+  });
 }
-
 
 /* =========================
    ACTIVE NAVIGATION
 ========================= */
 
-const sections =
-  document.querySelectorAll(
-    "main section[id]"
-  );
-
-const desktopLinks =
-  document.querySelectorAll(
-    ".desktop-nav a"
-  );
+const sections = document.querySelectorAll("main section[id]");
+const desktopLinks = document.querySelectorAll(".desktop-nav a");
 
 function updateNav() {
   let current = "";
+  const position = window.scrollY + 130;
 
-  const position =
-    window.scrollY + 130;
-
-  sections.forEach(
-    (section) => {
-      if (
-        position >=
-          section.offsetTop &&
-        position <
-          section.offsetTop +
-            section.offsetHeight
-      ) {
-        current =
-          section.id;
-      }
+  sections.forEach((section) => {
+    if (
+      position >= section.offsetTop &&
+      position < section.offsetTop + section.offsetHeight
+    ) {
+      current = section.id;
     }
-  );
+  });
 
-  desktopLinks.forEach(
-    (link) => {
-      link.classList.toggle(
-        "active",
-        link.getAttribute(
-          "href"
-        ) === `#${current}`
-      );
-    }
-  );
+  desktopLinks.forEach((link) => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === `#${current}`
+    );
+  });
 }
 
-window.addEventListener(
-  "scroll",
-  updateNav,
-  {
-    passive: true,
-  }
-);
-
-window.addEventListener(
-  "load",
-  updateNav
-);
-
+window.addEventListener("scroll", updateNav, { passive: true });
+window.addEventListener("load", updateNav);
 
 /* =========================
    HEADER SHADOW
 ========================= */
 
-const header =
-  document.getElementById(
-    "siteHeader"
-  );
+const header = document.getElementById("siteHeader");
 
 function headerShadow() {
   if (!header) return;
 
   header.style.boxShadow =
-    window.scrollY > 20
-      ? "0 10px 35px rgba(0,0,0,.28)"
-      : "none";
+    window.scrollY > 20 ? "0 10px 35px rgba(0,0,0,.28)" : "none";
 }
 
-window.addEventListener(
-  "scroll",
-  headerShadow,
-  {
-    passive: true,
-  }
-);
-
-window.addEventListener(
-  "load",
-  headerShadow
-);
-
+window.addEventListener("scroll", headerShadow, { passive: true });
+window.addEventListener("load", headerShadow);
 
 /* =========================
    CONTACT FORM
 ========================= */
 
-const contactForm =
-  document.getElementById(
-    "contactForm"
-  );
+const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
-  contactForm.addEventListener(
-    "submit",
-    (event) => {
-      event.preventDefault();
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-      const getValue = (id) =>
-        document
-          .getElementById(id)
-          .value
-          .trim();
+    const getValue = (id) =>
+      document.getElementById(id).value.trim();
 
-      const message =
+    const message =
 `Hi StrategyClick,
 
 I'm interested in your digital marketing services.
@@ -305,32 +197,19 @@ Service: ${getValue("service")}
 Requirement:
 ${getValue("message")}`;
 
-      const whatsappNumber =
-        "919159596960";
+    const whatsappNumber = "919159596960";
+    const whatsappURL =
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-      const whatsappURL =
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          message
-        )}`;
-
-      window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-      );
-    }
-  );
+    window.open(whatsappURL, "_blank", "noopener,noreferrer");
+  });
 }
-
 
 /* =========================
    CURRENT YEAR
 ========================= */
 
-const footerText =
-  document.querySelector(
-    ".footer-bottom p"
-  );
+const footerText = document.querySelector(".footer-bottom p");
 
 if (footerText) {
   footerText.textContent =
@@ -373,4 +252,17 @@ if (footerText) {
   processSection.querySelectorAll(".process-icon").forEach((icon, index) => {
     if (svgIcons[index]) icon.innerHTML = svgIcons[index];
   });
+})();
+
+/* =========================
+   ABOUT ABSTRACT ACCENTS
+========================= */
+
+(function loadAboutAbstractStyles(){
+  if (document.getElementById("aboutAbstractStyles")) return;
+  const link = document.createElement("link");
+  link.id = "aboutAbstractStyles";
+  link.rel = "stylesheet";
+  link.href = "about-abstract.css";
+  document.head.appendChild(link);
 })();
