@@ -174,25 +174,43 @@
 .process-card h3::after{content:"";position:absolute;left:50%;bottom:3px;width:34px;height:2px;transform:translateX(-50%);background:var(--gold);border-radius:2px;box-shadow:0 0 9px rgba(244,197,66,.48);}
 .process-card p{max-width:215px;margin:11px auto 0;color:#cbd4df;font-size:12.5px;line-height:1.72;}
 
+/* Thick CSS-drawn arrows between cards */
 .process-card:nth-child(1)::after,
 .process-card:nth-child(2)::after,
 .process-card:nth-child(3)::after,
 .process-card:nth-child(5)::after,
 .process-card:nth-child(6)::after{
-  content:"→";
+  content:"";
   position:absolute;
   z-index:8;
-  right:-43px;
+  right:-37px;
   top:46%;
+  width:28px;
+  height:4px;
   transform:translateY(-50%);
-  color:#061A35 !important;
-  font-size:42px;
-  font-weight:800;
-  line-height:1;
-  text-shadow:none !important;
+  background:#061A35;
+  border-radius:999px;
 }
-.process-card:nth-child(4)::after{display:none;}
-.process-card:nth-child(5)::before{display:none;}
+.process-card:nth-child(1)::before,
+.process-card:nth-child(2)::before,
+.process-card:nth-child(3)::before,
+.process-card:nth-child(5)::before,
+.process-card:nth-child(6)::before{
+  content:"";
+  position:absolute;
+  z-index:9;
+  right:-39px;
+  top:46%;
+  width:12px;
+  height:12px;
+  border-top:4px solid #061A35;
+  border-right:4px solid #061A35;
+  transform:translateY(-50%) rotate(45deg);
+}
+.process-card:nth-child(4)::after,
+.process-card:nth-child(4)::before,
+.process-card:nth-child(7)::after,
+.process-card:nth-child(7)::before{display:none;}
 
 @media(max-width:1050px){
   .process{padding:92px 0 94px;}
