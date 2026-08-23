@@ -225,7 +225,7 @@ if (footerText) {
     const link = document.createElement("link");
     link.id = "processPremiumStyles";
     link.rel = "stylesheet";
-    link.href = "process-premium.css?v=20260823-spacing-v5";
+    link.href = "process-premium.css?v=20260823-premium-icons-v6";
     document.head.appendChild(link);
   }
 
