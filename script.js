@@ -146,7 +146,7 @@ if (footerText) footerText.textContent = `© ${new Date().getFullYear()} Strateg
     const link = document.createElement("link");
     link.id = "processPremiumStyles";
     link.rel = "stylesheet";
-    link.href = "process-premium.css?v=20260823-reference-icons-v7";
+    link.href = "process-premium.css?v=20260823-strong-icons-v8";
     document.head.appendChild(link);
   }
 
