@@ -95,7 +95,7 @@
   z-index:2;
   display:grid;
   grid-template-columns:repeat(8,minmax(0,1fr));
-  gap:38px 44px;
+  gap:38px 58px;
   max-width:1220px;
   margin:0 auto;
   align-items:stretch;
@@ -174,7 +174,7 @@
 .process-card h3::after{content:"";position:absolute;left:50%;bottom:3px;width:34px;height:2px;transform:translateX(-50%);background:var(--gold);border-radius:2px;box-shadow:0 0 9px rgba(244,197,66,.48);}
 .process-card p{max-width:215px;margin:11px auto 0;color:#cbd4df;font-size:12.5px;line-height:1.72;}
 
-/* Thick CSS-drawn arrows between cards — fully reset old arrow styles */
+/* Thick CSS-drawn arrows centered in the wider card gap */
 .process-card:nth-child(1)::after,
 .process-card:nth-child(2)::after,
 .process-card:nth-child(3)::after,
@@ -183,11 +183,11 @@
   content:""!important;
   position:absolute!important;
   z-index:8!important;
-  right:-37px!important;
+  right:-42px!important;
   left:auto!important;
   top:46%!important;
   bottom:auto!important;
-  width:28px!important;
+  width:26px!important;
   height:4px!important;
   transform:translateY(-50%)!important;
   background:#061A35!important;
@@ -205,12 +205,12 @@
   content:""!important;
   position:absolute!important;
   z-index:9!important;
-  right:-39px!important;
+  right:-44px!important;
   left:auto!important;
   top:46%!important;
   bottom:auto!important;
-  width:12px!important;
-  height:12px!important;
+  width:11px!important;
+  height:11px!important;
   background:transparent!important;
   background-image:none!important;
   border:0!important;
