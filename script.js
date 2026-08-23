@@ -4,46 +4,24 @@ const mobileNav = document.getElementById("mobileNav");
 if (menuToggle && mobileNav) {
   menuToggle.addEventListener("click", () => {
     const open = mobileNav.classList.toggle("open");
-
-    menuToggle.setAttribute(
-      "aria-expanded",
-      String(open)
-    );
-
-    document.body.classList.toggle(
-      "menu-open",
-      open
-    );
+    menuToggle.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("menu-open", open);
   });
 
-  mobileNav
-    .querySelectorAll("a")
-    .forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileNav.classList.remove("open");
-        document.body.classList.remove("menu-open");
-
-        menuToggle.setAttribute(
-          "aria-expanded",
-          "false"
-        );
-      });
+  mobileNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileNav.classList.remove("open");
+      document.body.classList.remove("menu-open");
+      menuToggle.setAttribute("aria-expanded", "false");
     });
+  });
 }
 
 window.addEventListener("resize", () => {
-  if (
-    window.innerWidth > 850 &&
-    mobileNav &&
-    menuToggle
-  ) {
+  if (window.innerWidth > 850 && mobileNav && menuToggle) {
     mobileNav.classList.remove("open");
     document.body.classList.remove("menu-open");
-
-    menuToggle.setAttribute(
-      "aria-expanded",
-      "false"
-    );
+    menuToggle.setAttribute("aria-expanded", "false");
   }
 });
 
@@ -63,19 +41,11 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px",
-    }
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
   );
-
-  revealItems.forEach((item) => {
-    observer.observe(item);
-  });
+  revealItems.forEach((item) => observer.observe(item));
 } else {
-  revealItems.forEach((item) => {
-    item.classList.add("visible");
-  });
+  revealItems.forEach((item) => item.classList.add("visible"));
 }
 
 /* =========================
@@ -88,18 +58,10 @@ const portfolioCards = document.querySelectorAll(".portfolio-card");
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const filter = button.dataset.filter;
-
-    filterButtons.forEach((btn) => {
-      btn.classList.remove("active");
-    });
-
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
     button.classList.add("active");
-
     portfolioCards.forEach((card) => {
-      card.classList.toggle(
-        "hide",
-        filter !== "all" && card.dataset.category !== filter
-      );
+      card.classList.toggle("hide", filter !== "all" && card.dataset.category !== filter);
     });
   });
 });
@@ -114,12 +76,9 @@ const reviewFull = document.querySelector(".review-full");
 if (reviewMore && reviewFull) {
   reviewMore.addEventListener("click", () => {
     const expanded = reviewMore.getAttribute("aria-expanded") === "true";
-
     reviewMore.setAttribute("aria-expanded", String(!expanded));
     reviewFull.hidden = expanded;
-    reviewMore.innerHTML = expanded
-      ? 'Read More <span>→</span>'
-      : 'Show Less <span>↑</span>';
+    reviewMore.innerHTML = expanded ? 'Read More <span>→</span>' : 'Show Less <span>↑</span>';
   });
 }
 
@@ -133,21 +92,11 @@ const desktopLinks = document.querySelectorAll(".desktop-nav a");
 function updateNav() {
   let current = "";
   const position = window.scrollY + 130;
-
   sections.forEach((section) => {
-    if (
-      position >= section.offsetTop &&
-      position < section.offsetTop + section.offsetHeight
-    ) {
-      current = section.id;
-    }
+    if (position >= section.offsetTop && position < section.offsetTop + section.offsetHeight) current = section.id;
   });
-
   desktopLinks.forEach((link) => {
-    link.classList.toggle(
-      "active",
-      link.getAttribute("href") === `#${current}`
-    );
+    link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
   });
 }
 
@@ -159,14 +108,10 @@ window.addEventListener("load", updateNav);
 ========================= */
 
 const header = document.getElementById("siteHeader");
-
 function headerShadow() {
   if (!header) return;
-
-  header.style.boxShadow =
-    window.scrollY > 20 ? "0 10px 35px rgba(0,0,0,.28)" : "none";
+  header.style.boxShadow = window.scrollY > 20 ? "0 10px 35px rgba(0,0,0,.28)" : "none";
 }
-
 window.addEventListener("scroll", headerShadow, { passive: true });
 window.addEventListener("load", headerShadow);
 
@@ -175,33 +120,13 @@ window.addEventListener("load", headerShadow);
 ========================= */
 
 const contactForm = document.getElementById("contactForm");
-
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
-
-    const getValue = (id) =>
-      document.getElementById(id).value.trim();
-
-    const message =
-`Hi StrategyClick,
-
-I'm interested in your digital marketing services.
-
-Name: ${getValue("name")}
-Business: ${getValue("company") || "Not provided"}
-Phone: ${getValue("phone")}
-Email: ${getValue("email") || "Not provided"}
-Service: ${getValue("service")}
-
-Requirement:
-${getValue("message")}`;
-
+    const getValue = (id) => document.getElementById(id).value.trim();
+    const message = `Hi StrategyClick,\n\nI'm interested in your digital marketing services.\n\nName: ${getValue("name")}\nBusiness: ${getValue("company") || "Not provided"}\nPhone: ${getValue("phone")}\nEmail: ${getValue("email") || "Not provided"}\nService: ${getValue("service")}\n\nRequirement:\n${getValue("message")}`;
     const whatsappNumber = "919159596960";
-    const whatsappURL =
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   });
 }
 
@@ -210,11 +135,7 @@ ${getValue("message")}`;
 ========================= */
 
 const footerText = document.querySelector(".footer-bottom p");
-
-if (footerText) {
-  footerText.textContent =
-    `© ${new Date().getFullYear()} StrategyClick. All Rights Reserved.`;
-}
+if (footerText) footerText.textContent = `© ${new Date().getFullYear()} StrategyClick. All Rights Reserved.`;
 
 /* =========================
    PREMIUM PROCESS SECTION
@@ -225,7 +146,7 @@ if (footerText) {
     const link = document.createElement("link");
     link.id = "processPremiumStyles";
     link.rel = "stylesheet";
-    link.href = "process-premium.css?v=20260823-premium-icons-v6";
+    link.href = "process-premium.css?v=20260823-reference-icons-v7";
     document.head.appendChild(link);
   }
 
@@ -234,19 +155,17 @@ if (footerText) {
 
   const processText = processSection.querySelector(".section-head p");
   if (processText) {
-    processText.innerHTML =
-      '<span>A clear, proven process that turns strategy into results.</span>' +
-      '<span>We follow these 7 steps to ensure consistent, measurable success.</span>';
+    processText.innerHTML = '<span>A clear, proven process that turns strategy into results.</span><span>We follow these 7 steps to ensure consistent, measurable success.</span>';
   }
 
   const svgIcons = [
-    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="19" cy="19" r="10"/><path d="M26 26l9 9"/><path d="M14 23v-6M19 23v-9M24 23v-4"/></svg>',
-    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="22" cy="24" r="13"/><circle cx="22" cy="24" r="7"/><path d="M22 24l14-14M31 10h5v5"/></svg>',
-    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 29c-3-2-5-6-5-10 0-7 5-12 12-12s12 5 12 12c0 4-2 8-5 10-2 2-3 3-3 6h-8c0-3-1-4-3-6Z"/><path d="M20 39h8M21 43h6"/><path d="M24 2v-2M9 8l-3-3M39 8l3-3"/></svg>',
-    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 30 9 39l3-11L31 9c3-3 7-3 10-1l-1 8c0 5-4 9-9 9h-4"/><path d="M20 28l-6-1M27 21l6 6"/><circle cx="32" cy="16" r="2"/></svg>',
-    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 38h32M12 34V23h6v11M22 34V15h6v19M32 34V9h6v25"/><path d="m10 17 9-7 7 4 12-10"/><circle cx="38" cy="4" r="2"/></svg>',
-    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 38h32M12 34V25h6v9M22 34V19h6v15M32 34V11h6v23"/><path d="M10 19c7 0 10-5 14-8 4-3 8-4 14-5"/><path d="m34 4 4 2-2 4"/></svg>',
-    '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="12" y="8" width="24" height="32" rx="3"/><path d="M18 8V5h12v3M18 17h12M18 23h12M18 29h8"/><circle cx="32" cy="31" r="5"/><path d="M32 28v3l2 2"/></svg>'
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="12"/><path d="M29 29l9 9"/><path d="M14 24v-5M20 24V15M26 24v-8"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="22" cy="24" r="14"/><circle cx="22" cy="24" r="7"/><path d="M22 24 37 9M32 8h7v7"/><path d="m35 11 4-4"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 28c-3-2-5-6-5-10 0-7 6-13 13-13s13 6 13 13c0 4-2 8-5 10-2 2-3 4-3 6H19c0-2-1-4-3-6Z"/><path d="M19 38h10M21 43h6"/><path d="M24 1v3M7 8l3 3M41 8l-3 3M3 21h4M41 21h4"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8c7-5 12-4 12-4s1 6-4 13L23 30l-8 2 2-8L28 8Z"/><circle cx="31" cy="14" r="3"/><path d="m22 29-6 7M14 30l-5 1 2-5M20 36l-1 5 5-2"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 34V24h6v10M17 34V19h6v15M27 34V13h6v21"/><path d="m8 18 8-7 7 4 11-9"/><path d="M30 6h6v6"/><circle cx="34" cy="34" r="6"/><path d="m38 38 5 5"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M7 38h34M10 34V26h6v8M21 34V20h6v14M32 34V12h6v22"/><path d="m9 20 10-8 8 4 12-11"/><path d="M34 5h6v6"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="8" width="28" height="34" rx="3"/><path d="M18 8V5h12v3M16 17h16M16 23h12M16 29h8"/><circle cx="31" cy="31" r="7"/><path d="M31 24v7h7"/></svg>'
   ];
 
   processSection.querySelectorAll(".process-icon").forEach((icon, index) => {
