@@ -743,3 +743,20 @@ main > .process:nth-of-type(even):after{
     border-radius:14px;
   }
 }
+
+/* Uniform logo fitting inside tool tiles */
+.tool-logos img{
+  display:block;
+  padding:9px;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
+}
+.tool-logos img.uploaded-tool-icon,
+.tool-logos img.uploaded-tool-icon.wide-tool-icon,
+.tool-logos img.uploaded-tool-icon.contain-tool-icon{
+  padding:6px;
+  object-fit:contain;
+  object-position:center;
+  background:#fff;
+}
