@@ -460,3 +460,15 @@ main > .process:nth-of-type(even):after{
     font-size:10px;
   }
 }
+
+/* Precisely centered desktop navigation */
+@media(min-width:851px){
+  .navbar{position:relative}
+  .desktop-nav{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    margin-left:0;
+  }
+  .header-cta{margin-left:auto}
+}
