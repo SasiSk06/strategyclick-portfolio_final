@@ -986,3 +986,11 @@ main > .process:nth-of-type(even):after{
   height:100%;
   padding-bottom:18px;
 }
+
+/* Gold footer navigation */
+.footer-main nav a{
+  color:#f4c542;
+  font-weight:600;
+  transition:color .2s ease;
+}
+.footer-main nav a:hover{color:#fff}
