@@ -658,3 +658,10 @@ main > .process:nth-of-type(even):after{
     border-radius:13px;
   }
 }
+
+/* User-provided tool icon fit */
+.tool-logos img.uploaded-tool-icon{
+  padding:0;
+  object-fit:cover;
+  background:#fff;
+}
