@@ -238,3 +238,72 @@ main > .process:nth-of-type(even):after{
   color:#b57909;
 }
 .menu-toggle{background:#061a35}
+
+/* Larger logo and curved navy-gold menu */
+.header .logo img{
+  width:285px;
+  height:68px;
+}
+.desktop-nav{
+  padding:5px 8px;
+  border:1px solid rgba(244,197,66,.28);
+  border-radius:999px;
+  background:#061a35;
+  box-shadow:0 8px 20px rgba(6,26,53,.12);
+}
+.desktop-nav a{color:#f4c542}
+.desktop-nav a:hover,
+.desktop-nav a.active{color:#fff}
+.menu-toggle{
+  width:52px;
+  height:52px;
+  padding:12px;
+  border:1px solid rgba(244,197,66,.42);
+  border-radius:16px;
+  background:#061a35;
+  box-shadow:0 8px 20px rgba(6,26,53,.15);
+}
+.menu-toggle span{
+  height:3px;
+  border-radius:999px;
+  background:#f4c542;
+}
+.mobile-nav{
+  width:min(92%,520px);
+  margin:8px auto 14px;
+  padding:12px;
+  border:1px solid rgba(244,197,66,.3);
+  border-radius:18px;
+  background:#061a35;
+}
+.mobile-nav a{
+  color:#f4c542;
+  border-radius:10px;
+}
+.mobile-nav a:hover,
+.mobile-nav a.active{
+  background:rgba(244,197,66,.12);
+  color:#fff;
+}
+@media(max-width:1100px){
+  .header .logo img{
+    width:255px;
+    height:62px;
+  }
+}
+@media(max-width:850px){
+  .header .logo img{
+    width:245px;
+    height:58px;
+  }
+}
+@media(max-width:420px){
+  .header .logo img{
+    width:210px;
+    height:52px;
+  }
+  .menu-toggle{
+    width:48px;
+    height:48px;
+  }
+}
