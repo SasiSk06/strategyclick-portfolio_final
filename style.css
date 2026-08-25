@@ -123,3 +123,15 @@ main > .section:nth-of-type(even){
     background-size:165px 165px,165px 165px,100% 100%;
   }
 }
+
+/* Larger circular dot clusters */
+main > .section:nth-of-type(even){
+  background-position:-85px -85px,calc(100% + 85px) calc(100% + 85px),center;
+  background-size:340px 340px,340px 340px,100% 100%;
+}
+@media(max-width:600px){
+  main > .section:nth-of-type(even){
+    background-position:-60px -60px,calc(100% + 60px) calc(100% + 60px),center;
+    background-size:240px 240px,240px 240px,100% 100%;
+  }
+}
