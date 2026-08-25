@@ -548,3 +548,45 @@ main > .process:nth-of-type(even):after{
   :is(#about,#process,#clients,#contact)::before{top:-54px;left:-54px}
   :is(#about,#process,#clients,#contact)::after{right:-54px;bottom:-54px}
 }
+
+/* Premium soft desktop navigation */
+.desktop-nav{
+  gap:3px;
+  padding:5px;
+  border:1px solid #e5eaf0;
+  border-radius:13px;
+  background:#f7f9fc;
+  box-shadow:0 6px 20px rgba(6,26,53,.06);
+}
+.desktop-nav a{
+  padding:10px 14px;
+  border:1px solid transparent;
+  border-radius:8px;
+  background:transparent;
+  color:#24364d;
+  font-size:12px;
+  font-weight:600;
+  box-shadow:none;
+  transition:background .22s ease,color .22s ease,border-color .22s ease,box-shadow .22s ease;
+}
+.desktop-nav a:hover{
+  transform:none;
+  border-color:#e0e6ed;
+  background:#fff;
+  color:#061a35;
+  box-shadow:0 4px 12px rgba(6,26,53,.06);
+}
+.desktop-nav a.active{
+  border-color:#061a35;
+  background:#061a35;
+  color:#f4c542;
+  box-shadow:0 5px 14px rgba(6,26,53,.14);
+}
+.header-cta{
+  border-radius:9px;
+  box-shadow:0 6px 16px rgba(6,26,53,.12);
+}
+@media(max-width:1100px){
+  .desktop-nav{gap:2px;padding:4px}
+  .desktop-nav a{padding:9px 11px;font-size:10px}
+}
