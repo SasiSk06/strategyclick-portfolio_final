@@ -1031,3 +1031,74 @@ main > .process:nth-of-type(even):after{
   line-height:1;
   letter-spacing:-1px;
 }
+
+/* Global professional spacing cleanup */
+.section{padding:78px 0}
+.section-head{margin-bottom:36px}
+.section-head h2{margin-top:8px}
+.section-head p{margin-top:12px}
+.about-grid{gap:56px}
+.about-copy>p{margin-top:14px}
+.pillars{margin-top:22px;gap:12px}
+.service-grid,
+.portfolio-grid,
+.review-track{gap:16px}
+.service-card{padding:24px}
+.process-flow{gap:20px}
+.process-card{
+  min-height:250px;
+  padding:24px 20px;
+}
+.portfolio-filters{margin-bottom:22px}
+.portfolio-card{
+  min-height:230px;
+  padding:22px;
+}
+.testimonial-head{margin-bottom:30px}
+.testimonial-card{
+  min-height:330px;
+  padding:24px;
+}
+.brands-strip{margin-top:28px;padding:21px}
+.tools-grid{gap:14px}
+.tool-values{margin-top:24px}
+.tool-values>div{padding:18px}
+.contact-grid{gap:28px}
+.contact-copy>p{margin-top:14px}
+.contact-points{margin-top:24px}
+.contact-info{margin-top:25px}
+.contact-form{padding:25px}
+.final-cta{margin-top:38px}
+.footer-main{padding:24px 0}
+@media(max-width:850px){
+  .section{padding:64px 0}
+  .section-head{margin-bottom:30px}
+  .about-grid,
+  .contact-grid{gap:40px}
+  .process-flow{gap:16px}
+  .service-grid,
+  .portfolio-grid,
+  .review-track{gap:14px}
+}
+@media(max-width:600px){
+  .section{padding:52px 0}
+  .section-head{margin-bottom:26px}
+  .about-grid{gap:32px}
+  .pillars{margin-top:18px}
+  .service-card,
+  .portfolio-card,
+  .testimonial-card{padding:20px}
+  .process-card{
+    min-height:0;
+    padding:22px 18px;
+  }
+  .testimonial-head{margin-bottom:24px}
+  .brands-strip{margin-top:22px}
+  .tool-values{margin-top:20px}
+  .contact-grid{gap:32px}
+  .contact-points,
+  .contact-info{margin-top:20px}
+  .contact-form{padding:21px}
+  .final-cta{margin-top:30px}
+  .footer-main{padding:22px 0}
+}
