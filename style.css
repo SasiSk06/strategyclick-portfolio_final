@@ -153,3 +153,13 @@ main > .section:nth-of-type(even) .experience-badge span{
     background-size:240px 240px,240px 240px,100% 100%;
   }
 }
+
+/* Plain white odd sections - dots removed */
+main > .section:nth-of-type(even){
+  background:#fff;
+  background-image:none;
+}
+main > .process:nth-of-type(even):before,
+main > .process:nth-of-type(even):after{
+  display:none;
+}
