@@ -1021,3 +1021,13 @@ main > .process:nth-of-type(even):after{
   height:18px;
   object-fit:contain;
 }
+
+/* Gold LinkedIn footer mark */
+.linkedin-mark{
+  color:#f4c542;
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-1px;
+}
