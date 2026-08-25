@@ -135,3 +135,21 @@ main > .section:nth-of-type(even){
     background-size:240px 240px,240px 240px,100% 100%;
   }
 }
+
+/* Fully visible circular corner clusters and badge contrast */
+main > .section:nth-of-type(even){
+  background-position:18px 18px,calc(100% - 18px) calc(100% - 18px),center;
+  background-size:340px 340px,340px 340px,100% 100%;
+}
+main > .section:nth-of-type(even) .experience-badge strong{
+  color:var(--gold);
+}
+main > .section:nth-of-type(even) .experience-badge span{
+  color:#fff;
+}
+@media(max-width:600px){
+  main > .section:nth-of-type(even){
+    background-position:8px 8px,calc(100% - 8px) calc(100% - 8px),center;
+    background-size:240px 240px,240px 240px,100% 100%;
+  }
+}
