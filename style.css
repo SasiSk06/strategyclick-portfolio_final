@@ -1102,3 +1102,56 @@ main > .process:nth-of-type(even):after{
   .final-cta{margin-top:30px}
   .footer-main{padding:22px 0}
 }
+
+/* Targeted section gap reduction from visual review */
+.section,
+#about,
+#services,
+#process,
+#portfolio,
+#clients,
+#tools,
+#contact{
+  padding-top:46px;
+  padding-bottom:46px;
+}
+.section-head{margin-bottom:22px}
+.testimonial-head{margin-bottom:22px}
+.process .section-head{margin-bottom:24px}
+.about-grid{gap:44px}
+.service-grid,
+.process-flow,
+.portfolio-grid,
+.review-track{margin-top:0}
+@media(max-width:850px){
+  .section,
+  #about,
+  #services,
+  #process,
+  #portfolio,
+  #clients,
+  #tools,
+  #contact{
+    padding-top:42px;
+    padding-bottom:42px;
+  }
+  .section-head,
+  .testimonial-head{margin-bottom:20px}
+}
+@media(max-width:600px){
+  .section,
+  #about,
+  #services,
+  #process,
+  #portfolio,
+  #clients,
+  #tools,
+  #contact{
+    padding-top:36px;
+    padding-bottom:36px;
+  }
+  .section-head,
+  .testimonial-head,
+  .process .section-head{margin-bottom:18px}
+  .about-grid{gap:26px}
+}
