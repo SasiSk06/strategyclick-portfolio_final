@@ -489,3 +489,62 @@ main > .process:nth-of-type(even):after{
 #process .process-decor{
   display:none;
 }
+
+/* About-style halftone corners shared across light sections */
+:is(#about,#process,#clients,#contact){
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--polar);
+}
+:is(#about,#process,#clients,#contact)>.container{
+  position:relative;
+  z-index:2;
+}
+:is(#about,#process,#clients,#contact)::before,
+:is(#about,#process,#clients,#contact)::after{
+  content:"";
+  display:block;
+  position:absolute;
+  pointer-events:none;
+  z-index:1;
+  width:340px;
+  height:340px;
+  opacity:.28;
+  background-image:radial-gradient(circle,#061A35 1.7px,transparent 1.8px);
+  background-size:11px 11px;
+}
+:is(#about,#process,#clients,#contact)::before{
+  top:-72px;
+  left:-72px;
+  -webkit-mask-image:radial-gradient(circle at 0 0,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
+  mask-image:radial-gradient(circle at 0 0,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
+}
+:is(#about,#process,#clients,#contact)::after{
+  right:-72px;
+  bottom:-72px;
+  -webkit-mask-image:radial-gradient(circle at 100% 100%,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
+  mask-image:radial-gradient(circle at 100% 100%,#000 0 22%,rgba(0,0,0,.95) 34%,rgba(0,0,0,.62) 52%,rgba(0,0,0,.25) 68%,transparent 84%);
+}
+@media(max-width:900px){
+  :is(#about,#process,#clients,#contact)::before,
+  :is(#about,#process,#clients,#contact)::after{
+    width:260px;
+    height:260px;
+    opacity:.23;
+    background-size:10px 10px;
+  }
+  :is(#about,#process,#clients,#contact)::before{top:-64px;left:-64px}
+  :is(#about,#process,#clients,#contact)::after{right:-64px;bottom:-64px}
+}
+@media(max-width:600px){
+  :is(#about,#process,#clients,#contact)::before,
+  :is(#about,#process,#clients,#contact)::after{
+    width:190px;
+    height:190px;
+    opacity:.18;
+    background-size:9px 9px;
+  }
+  :is(#about,#process,#clients,#contact)::before{top:-54px;left:-54px}
+  :is(#about,#process,#clients,#contact)::after{right:-54px;bottom:-54px}
+}
