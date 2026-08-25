@@ -590,3 +590,10 @@ main > .process:nth-of-type(even):after{
   .desktop-nav{gap:2px;padding:4px}
   .desktop-nav a{padding:9px 11px;font-size:10px}
 }
+
+/* Content-fit service card heights */
+.service-grid{align-items:start}
+.service-card{
+  min-height:0;
+  height:auto;
+}
