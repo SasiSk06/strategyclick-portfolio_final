@@ -377,3 +377,47 @@ main > .process:nth-of-type(even):after{
   .logo-name strong{font-size:19px}
   .logo-name small{font-size:7px}
 }
+
+/* Crop SC mark cleanly without duplicate old wordmark */
+.header .logo-lockup{gap:12px}
+.logo-mark{
+  width:52px;
+  height:58px;
+  flex:0 0 52px;
+}
+.header .logo-mark img{
+  width:255px;
+  height:58px;
+  max-width:none;
+  object-fit:contain;
+  object-position:left center;
+}
+.logo-name strong{
+  font-size:27px;
+  letter-spacing:-1.3px;
+}
+@media(max-width:850px){
+  .header .logo-lockup{gap:10px}
+  .logo-mark{
+    width:48px;
+    height:54px;
+    flex-basis:48px;
+  }
+  .header .logo-mark img{
+    width:238px;
+    height:54px;
+  }
+  .logo-name strong{font-size:24px}
+}
+@media(max-width:420px){
+  .logo-mark{
+    width:43px;
+    height:48px;
+    flex-basis:43px;
+  }
+  .header .logo-mark img{
+    width:218px;
+    height:48px;
+  }
+  .logo-name strong{font-size:21px}
+}
