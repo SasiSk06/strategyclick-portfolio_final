@@ -475,3 +475,17 @@ main > .process:nth-of-type(even):after{
 
 /* Softer menu corner radius */
 .desktop-nav a{border-radius:9px}
+
+/* Match About background across selected sections */
+#about,
+#process,
+#clients,
+#contact{
+  background:var(--polar);
+  background-image:none;
+}
+#process:before,
+#process:after,
+#process .process-decor{
+  display:none;
+}
