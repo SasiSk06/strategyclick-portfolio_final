@@ -604,3 +604,57 @@ main > .process:nth-of-type(even):after{
   min-height:0;
   height:100%;
 }
+
+/* Premium consistent tools icon system */
+.tool-logos{
+  gap:14px;
+  margin-top:22px;
+}
+.tool-logos>span{
+  gap:9px;
+  color:#e8eef5;
+  font-size:9px;
+  font-weight:500;
+}
+.tool-logos img,
+.generic-tool-icon{
+  width:56px;
+  height:56px;
+  padding:12px;
+  border:1px solid rgba(244,197,66,.24);
+  border-radius:14px;
+  background:linear-gradient(145deg,#fff,#eef2f6);
+  box-shadow:0 9px 22px rgba(0,0,0,.16);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.generic-tool-icon{
+  display:grid;
+  place-items:center;
+  padding:0;
+  color:#f4c542;
+  background:linear-gradient(145deg,#0c3157,#061a35);
+  font-style:normal;
+  font-size:24px;
+  font-weight:700;
+}
+.tool-logos>span:hover img,
+.tool-logos>span:hover .generic-tool-icon{
+  transform:translateY(-4px);
+  border-color:rgba(244,197,66,.72);
+  box-shadow:0 13px 28px rgba(0,0,0,.22);
+}
+.clarity-icon{color:#55a8ff}
+.rank-icon{color:#f4c542}
+.seo-icon{color:#6ee7b7}
+.speed-icon{color:#ffd75e}
+.whatsapp-icon{color:#25d366}
+.crm-icon{color:#ff8b6a}
+.planning-icon{color:#8fc5ff}
+@media(max-width:600px){
+  .tool-logos img,
+  .generic-tool-icon{
+    width:52px;
+    height:52px;
+    border-radius:13px;
+  }
+}
