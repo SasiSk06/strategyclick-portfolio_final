@@ -597,3 +597,10 @@ main > .process:nth-of-type(even):after{
   min-height:0;
   height:auto;
 }
+
+/* Equal content-driven service card heights */
+.service-grid{align-items:stretch}
+.service-card{
+  min-height:0;
+  height:100%;
+}
