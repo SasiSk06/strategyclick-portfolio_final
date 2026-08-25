@@ -665,3 +665,10 @@ main > .process:nth-of-type(even):after{
   object-fit:cover;
   background:#fff;
 }
+
+/* Wide SEO logo fitting */
+.tool-logos img.uploaded-tool-icon.wide-tool-icon{
+  padding:5px;
+  object-fit:contain;
+  background:#fff;
+}
