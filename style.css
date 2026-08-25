@@ -307,3 +307,73 @@ main > .process:nth-of-type(even):after{
     height:48px;
   }
 }
+
+/* Crisp horizontal StrategyClick logo lockup */
+.header .logo-lockup{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  min-width:max-content;
+  padding:0;
+  background:transparent;
+}
+.logo-mark{
+  display:block;
+  width:84px;
+  height:64px;
+  overflow:hidden;
+  flex:0 0 84px;
+}
+.header .logo-mark img{
+  width:255px;
+  height:64px;
+  max-width:none;
+  object-fit:contain;
+  object-position:left center;
+}
+.logo-name{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  line-height:1;
+}
+.logo-name strong{
+  color:#061a35;
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:-1.2px;
+}
+.logo-name strong span{color:#d99f18}
+.logo-name small{
+  margin-top:6px;
+  color:#6b7787;
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.45px;
+}
+@media(max-width:850px){
+  .header .logo-lockup{gap:8px}
+  .logo-mark{
+    width:72px;
+    height:56px;
+    flex-basis:72px;
+  }
+  .header .logo-mark img{
+    width:225px;
+    height:56px;
+  }
+  .logo-name strong{font-size:22px}
+}
+@media(max-width:420px){
+  .logo-mark{
+    width:60px;
+    height:48px;
+    flex-basis:60px;
+  }
+  .header .logo-mark img{
+    width:195px;
+    height:48px;
+  }
+  .logo-name strong{font-size:19px}
+  .logo-name small{font-size:7px}
+}
