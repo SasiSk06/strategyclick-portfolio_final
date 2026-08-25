@@ -421,3 +421,42 @@ main > .process:nth-of-type(even):after{
   }
   .logo-name strong{font-size:21px}
 }
+
+/* Individual curved desktop menu items */
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.desktop-nav a{
+  padding:10px 13px;
+  border:1px solid rgba(244,197,66,.24);
+  border-radius:999px;
+  background:#061a35;
+  color:#f4c542;
+  box-shadow:0 5px 14px rgba(6,26,53,.1);
+}
+.desktop-nav a:after{display:none}
+.desktop-nav a:hover{
+  transform:translateY(-2px);
+  border-color:#f4c542;
+  background:#0b2848;
+  color:#f4c542;
+}
+.desktop-nav a.active{
+  border-color:#f4c542;
+  background:#f4c542;
+  color:#061a35;
+}
+@media(max-width:1100px){
+  .desktop-nav{gap:4px}
+  .desktop-nav a{
+    padding:9px 10px;
+    font-size:10px;
+  }
+}
