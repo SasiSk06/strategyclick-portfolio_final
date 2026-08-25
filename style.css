@@ -978,3 +978,11 @@ main > .process:nth-of-type(even):after{
     height:36px;
   }
 }
+
+/* Remove excess tools card bottom space */
+.tools-grid{align-items:stretch}
+.tools-card{
+  min-height:0;
+  height:100%;
+  padding-bottom:18px;
+}
