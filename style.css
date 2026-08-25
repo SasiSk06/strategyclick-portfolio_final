@@ -760,3 +760,40 @@ main > .process:nth-of-type(even):after{
   object-position:center;
   background:#fff;
 }
+
+/* Larger Analytics and SEO tool logos */
+.tools-card:nth-child(4) .tool-logos,
+.tools-card:nth-child(5) .tool-logos{
+  gap:12px;
+}
+.tools-card:nth-child(4) .tool-logos img,
+.tools-card:nth-child(4) .generic-tool-icon,
+.tools-card:nth-child(5) .tool-logos img,
+.tools-card:nth-child(5) .generic-tool-icon{
+  width:76px;
+  height:76px;
+  padding:6px;
+  border-radius:17px;
+}
+.tools-card:nth-child(4) .tool-logos img.uploaded-tool-icon,
+.tools-card:nth-child(5) .tool-logos img.uploaded-tool-icon{
+  padding:2px;
+}
+@media(max-width:1100px){
+  .tools-card:nth-child(4) .tool-logos img,
+  .tools-card:nth-child(4) .generic-tool-icon,
+  .tools-card:nth-child(5) .tool-logos img,
+  .tools-card:nth-child(5) .generic-tool-icon{
+    width:70px;
+    height:70px;
+  }
+}
+@media(max-width:600px){
+  .tools-card:nth-child(4) .tool-logos img,
+  .tools-card:nth-child(4) .generic-tool-icon,
+  .tools-card:nth-child(5) .tool-logos img,
+  .tools-card:nth-child(5) .generic-tool-icon{
+    width:62px;
+    height:62px;
+  }
+}
