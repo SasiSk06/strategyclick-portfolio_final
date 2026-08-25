@@ -797,3 +797,31 @@ main > .process:nth-of-type(even):after{
     height:62px;
   }
 }
+
+/* Refined smaller tool icon sizing */
+.tool-logos img,
+.generic-tool-icon{
+  width:60px;
+  height:60px;
+  border-radius:14px;
+}
+.tools-card:nth-child(4) .tool-logos img,
+.tools-card:nth-child(4) .generic-tool-icon,
+.tools-card:nth-child(5) .tool-logos img,
+.tools-card:nth-child(5) .generic-tool-icon{
+  width:64px;
+  height:64px;
+  border-radius:15px;
+}
+@media(max-width:600px){
+  .tool-logos img,
+  .generic-tool-icon,
+  .tools-card:nth-child(4) .tool-logos img,
+  .tools-card:nth-child(4) .generic-tool-icon,
+  .tools-card:nth-child(5) .tool-logos img,
+  .tools-card:nth-child(5) .generic-tool-icon{
+    width:54px;
+    height:54px;
+    border-radius:13px;
+  }
+}
