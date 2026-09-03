@@ -1,0 +1,25 @@
+{
+  "name": "strategyclick-portfolio",
+  "version": "1.0.0",
+  "description": "StrategyClick Digital Marketing Agency Portfolio Website with Vercel Speed Insights",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "postinstall": "cp node_modules/@vercel/speed-insights/dist/index.mjs vendor/speed-insights.mjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SasiSk06/strategyclick-portfolio_final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SasiSk06/strategyclick-portfolio_final/issues"
+  },
+  "homepage": "https://github.com/SasiSk06/strategyclick-portfolio_final#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
