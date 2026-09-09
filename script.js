@@ -196,6 +196,40 @@ if (footerText) footerText.textContent = `© ${new Date().getFullYear()} Strateg
 })();
 
 /* =========================
+   ABOUT VALUE CARD ICONS
+========================= */
+
+(function setupAboutValueIcons(){
+  const about = document.getElementById("about");
+  if (!about) return;
+
+  const icons = [
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="2.5"/><path d="M24 5v5M43 24h-5M24 43v-5M5 24h5"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 28c-3-2-5-6-5-10 0-7 5-12 12-12s12 5 12 12c0 4-2 8-5 10-2 2-3 4-3 6h-8c0-2-1-4-3-6Z"/><path d="M20 38h8M22 42h4"/><path d="M24 2v3M7 10l3 2M41 10l-3 2M4 22h4M40 22h4"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 38h32"/><path d="M11 34V24h6v10M21 34V18h6v16M31 34V12h6v22"/><path d="m10 18 9-7 8 4 11-9"/><path d="M33 6h6v6"/></svg>',
+    '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="17" r="6"/><circle cx="32" cy="17" r="5"/><path d="M7 38c1-8 5-12 11-12s10 4 11 12"/><path d="M27 29c2-2 4-3 7-3 5 0 8 4 9 10"/><path d="m17 35 5 4 9-9"/></svg>'
+  ];
+
+  about.querySelectorAll(".pillars > div > span").forEach((icon, index) => {
+    if (!icons[index]) return;
+    icon.innerHTML = icons[index];
+    const svg = icon.querySelector("svg");
+    if (svg) {
+      Object.assign(svg.style, {
+        width: "20px",
+        height: "20px",
+        display: "block",
+        fill: "none",
+        stroke: "#F4C542",
+        strokeWidth: "2.2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      });
+    }
+  });
+})();
+
+/* =========================
    ABOUT ABSTRACT ACCENTS
 ========================= */
 
