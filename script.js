@@ -193,5 +193,19 @@ if (footerText) footerText.textContent = `© ${new Date().getFullYear()} Strateg
 (function setWhatsAppFloatIcon(){
   const whatsappFloat = document.querySelector(".whatsapp-float");
   if (!whatsappFloat) return;
-  whatsappFloat.innerHTML = '<img src="https://cdn.simpleicons.org/whatsapp/FFFFFF" alt="" aria-hidden="true" style="width:32px;height:32px;display:block;object-fit:contain;">';
+  whatsappFloat.innerHTML = '<img src="https://cdn.simpleicons.org/whatsapp/FFFFFF" alt="" aria-hidden="true" style="width:34px;height:34px;display:block;object-fit:contain;">';
+  Object.assign(whatsappFloat.style, {
+    width: "58px",
+    height: "58px",
+    borderRadius: "50%",
+    background: "#25D366",
+    border: "0",
+    color: "#fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "0",
+    boxShadow: "0 10px 28px rgba(0,0,0,.28)",
+    overflow: "hidden"
+  });
 })();
