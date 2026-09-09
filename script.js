@@ -209,3 +209,16 @@ if (footerText) footerText.textContent = `© ${new Date().getFullYear()} Strateg
     overflow: "hidden"
   });
 })();
+
+/* =========================
+   MOBILE HEADER FIX
+========================= */
+
+(function loadMobileHeaderFix(){
+  if (document.getElementById("mobileHeaderFixStyles")) return;
+  const link = document.createElement("link");
+  link.id = "mobileHeaderFixStyles";
+  link.rel = "stylesheet";
+  link.href = "mobile-header-fix.css?v=20260909-v1";
+  document.head.appendChild(link);
+})();
