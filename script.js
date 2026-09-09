@@ -26,6 +26,29 @@ window.addEventListener("resize", () => {
 });
 
 /* =========================
+   MOBILE GET A QUOTE → FORM
+========================= */
+
+if (mobileNav) {
+  const mobileQuoteLink = Array.from(mobileNav.querySelectorAll("a")).find(
+    (link) => link.textContent.trim().toLowerCase() === "get a quote"
+  );
+
+  if (mobileQuoteLink) {
+    mobileQuoteLink.setAttribute("href", "#contactForm");
+    mobileQuoteLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+      mobileNav.classList.remove("open");
+      document.body.classList.remove("menu-open");
+      if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+
+/* =========================
    SCROLL REVEAL
 ========================= */
 
