@@ -26,27 +26,26 @@ window.addEventListener("resize", () => {
 });
 
 /* =========================
-   MOBILE GET A QUOTE → FORM
+   ALL GET A QUOTE → FORM
 ========================= */
 
-if (mobileNav) {
-  const mobileQuoteLink = Array.from(mobileNav.querySelectorAll("a")).find(
-    (link) => link.textContent.trim().toLowerCase() === "get a quote"
-  );
+Array.from(document.querySelectorAll("a")).forEach((link) => {
+  const label = link.textContent.replace(/→/g, "").trim().toLowerCase();
+  if (label !== "get a quote") return;
 
-  if (mobileQuoteLink) {
-    mobileQuoteLink.setAttribute("href", "#contactForm");
-    mobileQuoteLink.addEventListener("click", (event) => {
-      event.preventDefault();
-      const form = document.getElementById("contactForm");
-      if (!form) return;
-      mobileNav.classList.remove("open");
-      document.body.classList.remove("menu-open");
-      if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
-      form.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
-}
+  link.setAttribute("href", "#contactForm");
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+
+    if (mobileNav) mobileNav.classList.remove("open");
+    document.body.classList.remove("menu-open");
+    if (menuToggle) menuToggle.setAttribute("aria-expanded", "false");
+
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
 
 /* =========================
    SCROLL REVEAL
