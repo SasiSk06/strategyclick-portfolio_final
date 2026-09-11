@@ -16,37 +16,78 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace broken logo image with stable brand lockup
+      - name: Apply white footer brand styling
         run: |
           python - <<'PY'
           from pathlib import Path
 
-          html = Path('index.html')
-          text = html.read_text(encoding='utf-8')
-
-          old_header = '<a class="logo logo-lockup" href="#home" aria-label="StrategyClick.in home"><img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:240px;max-width:42vw;height:auto;object-fit:contain;display:block;"></a>'
-          new_header = '<a class="logo brand-final-lockup" href="#home" aria-label="StrategyClick.in home"><span class="brand-final-name"><strong>Strategy</strong><strong>Click</strong><b>.in</b></span><span class="brand-final-tagline">Strategize. <em>Click.</em> Profit.</span></a>'
-          text = text.replace(old_header, new_header, 1)
-
-          old_footer = '<img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:220px;max-width:100%;height:auto;object-fit:contain;display:block;">'
-          new_footer = '<span class="brand-final-lockup footer-brand-lockup" aria-label="StrategyClick.in — Strategize. Click. Profit."><span class="brand-final-name"><strong>Strategy</strong><strong>Click</strong><b>.in</b></span><span class="brand-final-tagline">Strategize. <em>Click.</em> Profit.</span></span>'
-          text = text.replace(old_footer, new_footer, 1)
-          text = text.replace('<meta property="og:image" content="strategyclick-final-logo.svg">', '<meta property="og:image" content="logo.png">', 1)
-          html.write_text(text, encoding='utf-8')
-
           css = Path('style.css')
           styles = css.read_text(encoding='utf-8')
-          marker = '/* FINAL STRATEGYCLICK BRAND LOCKUP */'
-          if marker not in styles:
-              styles += '''\n\n/* FINAL STRATEGYCLICK BRAND LOCKUP */\n.brand-final-lockup{display:inline-flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;line-height:1;text-decoration:none;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;min-width:0!important}.brand-final-name{display:flex;align-items:baseline;white-space:nowrap;font-family:Poppins,sans-serif;font-weight:800;letter-spacing:-1.6px}.brand-final-name strong{font-size:29px!important;font-weight:800!important;color:#123666!important}.brand-final-name strong:nth-child(2){color:#F0BE45!important}.brand-final-name b{margin-left:2px;font-size:12px;font-weight:700;color:#123666!important;letter-spacing:-.3px}.brand-final-tagline{margin-top:5px;margin-left:auto;margin-right:auto;color:#123666;font-size:8px;font-weight:500;letter-spacing:.15px;white-space:nowrap}.brand-final-tagline em{font-style:normal;color:#F0BE45}.footer-brand-lockup{display:inline-flex!important;background:#fff!important;padding:9px 14px!important;border-radius:10px!important}.footer-brand-lockup .brand-final-name strong{font-size:27px!important}.footer-brand-lockup .brand-final-name b{font-size:11px}.footer-brand-lockup .brand-final-tagline{font-size:7.5px}@media(max-width:850px){.brand-final-name strong{font-size:25px!important}.brand-final-name b{font-size:10px}.brand-final-tagline{font-size:7px}}@media(max-width:480px){.brand-final-name strong{font-size:22px!important}.brand-final-name b{font-size:9px}.brand-final-tagline{font-size:6.5px}.footer-brand-lockup{padding:8px 12px!important}}\n'''
-              css.write_text(styles, encoding='utf-8')
+          marker = '/* FINAL WHITE FOOTER OVERRIDE */'
+          block = '''
+
+/* FINAL WHITE FOOTER OVERRIDE */
+.footer{
+  background:#fff!important;
+  color:#123666!important;
+  border-top:1px solid rgba(18,54,102,.10)!important;
+  box-shadow:0 -10px 34px rgba(18,54,102,.05)!important;
+}
+.footer-main,
+.footer-bottom{
+  background:#fff!important;
+}
+.footer-main nav a,
+.footer-bottom p,
+.footer a,
+.footer span,
+.footer strong,
+.footer small{
+  color:#123666!important;
+}
+.footer-main nav a:hover{
+  color:#F0BE45!important;
+}
+.footer-bottom{
+  border-top:1px solid rgba(18,54,102,.10)!important;
+}
+.footer-social span{
+  border-color:rgba(18,54,102,.18)!important;
+  background:#fff!important;
+}
+.footer-social .linkedin-mark{
+  color:#123666!important;
+}
+.footer-social img{
+  filter:none!important;
+}
+.footer-brand-lockup{
+  background:#fff!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.footer-brand-lockup .brand-final-name strong:first-child,
+.footer-brand-lockup .brand-final-name b,
+.footer-brand-lockup .brand-final-tagline{
+  color:#123666!important;
+}
+.footer-brand-lockup .brand-final-name strong:nth-child(2),
+.footer-brand-lockup .brand-final-tagline em{
+  color:#F0BE45!important;
+}
+'''
+          if marker in styles:
+              styles = styles.split(marker)[0].rstrip() + block
+          else:
+              styles += block
+          css.write_text(styles, encoding='utf-8')
           PY
 
       - name: Commit changes
         run: |
           git config user.name "StrategyClick Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add index.html style.css
+          git add style.css
           git diff --cached --quiet && exit 0
-          git commit -m "Fix StrategyClick final logo display"
+          git commit -m "Switch footer to white and navy brand styling"
           git push
