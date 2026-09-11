@@ -198,3 +198,11 @@
   .hero-art img{border-radius:16px!important}
   .hero-valuebar{grid-template-columns:1fr!important}
 }
+
+/* Hero image MIME fix: source bytes are JPEG */
+.hero-art{
+  background:url("hero-visual.jpg") center/contain no-repeat!important;
+}
+.hero-art img[src="hero-visual.webp"]{
+  opacity:0!important;
+}
