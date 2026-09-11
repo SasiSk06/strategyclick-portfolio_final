@@ -16,32 +16,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace logo references
+      - name: Replace broken logo image with stable brand lockup
         run: |
           python - <<'PY'
           from pathlib import Path
 
-          path = Path('index.html')
-          text = path.read_text(encoding='utf-8')
+          html = Path('index.html')
+          text = html.read_text(encoding='utf-8')
 
-          old_header = '<a class="logo logo-lockup" href="#home" aria-label="StrategyClick home"><span class="logo-mark" aria-hidden="true"><img src="logo.png" alt=""></span><span class="logo-name"><strong>Strategy<span>Click</span></strong><small>Strategize. Click. Profit.</small></span></a>'
-          new_header = '<a class="logo logo-lockup" href="#home" aria-label="StrategyClick.in home"><img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:240px;max-width:42vw;height:auto;object-fit:contain;display:block;"></a>'
-
-          if old_header not in text:
-              raise SystemExit('Expected header logo markup not found')
-
+          old_header = '<a class="logo logo-lockup" href="#home" aria-label="StrategyClick.in home"><img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:240px;max-width:42vw;height:auto;object-fit:contain;display:block;"></a>'
+          new_header = '<a class="logo brand-final-lockup" href="#home" aria-label="StrategyClick.in home"><span class="brand-final-name"><strong>Strategy</strong><strong>Click</strong><b>.in</b></span><span class="brand-final-tagline">Strategize. <em>Click.</em> Profit.</span></a>'
           text = text.replace(old_header, new_header, 1)
-          text = text.replace('<meta property="og:image" content="logo.png">', '<meta property="og:image" content="strategyclick-final-logo.svg">', 1)
-          text = text.replace('<img src="logo.png" alt="StrategyClick">', '<img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:220px;max-width:100%;height:auto;object-fit:contain;display:block;">', 1)
 
-          path.write_text(text, encoding='utf-8')
+          old_footer = '<img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:220px;max-width:100%;height:auto;object-fit:contain;display:block;">'
+          new_footer = '<span class="brand-final-lockup footer-brand-lockup" aria-label="StrategyClick.in — Strategize. Click. Profit."><span class="brand-final-name"><strong>Strategy</strong><strong>Click</strong><b>.in</b></span><span class="brand-final-tagline">Strategize. <em>Click.</em> Profit.</span></span>'
+          text = text.replace(old_footer, new_footer, 1)
+          text = text.replace('<meta property="og:image" content="strategyclick-final-logo.svg">', '<meta property="og:image" content="logo.png">', 1)
+          html.write_text(text, encoding='utf-8')
+
+          css = Path('style.css')
+          styles = css.read_text(encoding='utf-8')
+          marker = '/* FINAL STRATEGYCLICK BRAND LOCKUP */'
+          if marker not in styles:
+              styles += '''\n\n/* FINAL STRATEGYCLICK BRAND LOCKUP */\n.brand-final-lockup{display:inline-flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;line-height:1;text-decoration:none;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;min-width:0!important}.brand-final-name{display:flex;align-items:baseline;white-space:nowrap;font-family:Poppins,sans-serif;font-weight:800;letter-spacing:-1.6px}.brand-final-name strong{font-size:29px!important;font-weight:800!important;color:#123666!important}.brand-final-name strong:nth-child(2){color:#F0BE45!important}.brand-final-name b{margin-left:2px;font-size:12px;font-weight:700;color:#123666!important;letter-spacing:-.3px}.brand-final-tagline{margin-top:5px;margin-left:auto;margin-right:auto;color:#123666;font-size:8px;font-weight:500;letter-spacing:.15px;white-space:nowrap}.brand-final-tagline em{font-style:normal;color:#F0BE45}.footer-brand-lockup{display:inline-flex!important;background:#fff!important;padding:9px 14px!important;border-radius:10px!important}.footer-brand-lockup .brand-final-name strong{font-size:27px!important}.footer-brand-lockup .brand-final-name b{font-size:11px}.footer-brand-lockup .brand-final-tagline{font-size:7.5px}@media(max-width:850px){.brand-final-name strong{font-size:25px!important}.brand-final-name b{font-size:10px}.brand-final-tagline{font-size:7px}}@media(max-width:480px){.brand-final-name strong{font-size:22px!important}.brand-final-name b{font-size:9px}.brand-final-tagline{font-size:6.5px}.footer-brand-lockup{padding:8px 12px!important}}\n'''
+              css.write_text(styles, encoding='utf-8')
           PY
 
       - name: Commit changes
         run: |
           git config user.name "StrategyClick Bot"
           git config user.email "actions@users.noreply.github.com"
-          git add index.html
+          git add index.html style.css
           git diff --cached --quiet && exit 0
-          git commit -m "Replace site logos with final StrategyClick.in logo"
+          git commit -m "Fix StrategyClick final logo display"
           git push
