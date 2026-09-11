@@ -69,30 +69,63 @@
   #about::after{right:-54px;bottom:-54px;}
 }
 
-/* Footer logo visibility on dark navy background */
+/* Footer — white background with final logo navy typography */
+.footer{
+  background:#fff!important;
+  color:#123666!important;
+  border-top:1px solid rgba(18,54,102,.10)!important;
+  box-shadow:0 -10px 34px rgba(18,54,102,.05)!important;
+}
+.footer .footer-main,
+.footer .footer-bottom{
+  background:#fff!important;
+}
+.footer .footer-main nav a,
+.footer .footer-bottom p{
+  color:#123666!important;
+}
+.footer .footer-main nav a:hover{
+  color:#F0BE45!important;
+}
+.footer .footer-bottom{
+  border-top:1px solid rgba(18,54,102,.10)!important;
+}
 .footer .footer-logo{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:8px 12px;
-  border:1px solid rgba(244,197,66,.28);
-  border-radius:12px;
-  background:#fff;
-  box-shadow:0 8px 24px rgba(0,0,0,.18);
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
 }
-.footer .footer-logo img{
-  width:210px;
-  height:auto;
-  max-height:58px;
-  object-fit:contain;
+.footer .footer-brand-lockup{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
 }
+.footer .footer-brand-lockup .brand-final-name strong:first-child,
+.footer .footer-brand-lockup .brand-final-name b,
+.footer .footer-brand-lockup .brand-final-tagline{
+  color:#123666!important;
+}
+.footer .footer-brand-lockup .brand-final-name strong:nth-child(2),
+.footer .footer-brand-lockup .brand-final-tagline em{
+  color:#F0BE45!important;
+}
+.footer .footer-social span{
+  color:#123666!important;
+  border-color:rgba(18,54,102,.18)!important;
+  background:#fff!important;
+}
+.footer .footer-social .linkedin-mark{
+  color:#123666!important;
+}
+
 @media(max-width:600px){
-  .footer .footer-logo{
-    padding:7px 10px;
-    border-radius:10px;
-  }
-  .footer .footer-logo img{
-    width:180px;
-    max-height:50px;
+  .footer .footer-main{
+    gap:18px;
   }
 }
