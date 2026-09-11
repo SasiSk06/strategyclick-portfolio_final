@@ -1,0 +1,47 @@
+name: Apply Final StrategyClick Logo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/final-logo-update.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-logo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Replace logo references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          text = path.read_text(encoding='utf-8')
+
+          old_header = '<a class="logo logo-lockup" href="#home" aria-label="StrategyClick home"><span class="logo-mark" aria-hidden="true"><img src="logo.png" alt=""></span><span class="logo-name"><strong>Strategy<span>Click</span></strong><small>Strategize. Click. Profit.</small></span></a>'
+          new_header = '<a class="logo logo-lockup" href="#home" aria-label="StrategyClick.in home"><img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:240px;max-width:42vw;height:auto;object-fit:contain;display:block;"></a>'
+
+          if old_header not in text:
+              raise SystemExit('Expected header logo markup not found')
+
+          text = text.replace(old_header, new_header, 1)
+          text = text.replace('<meta property="og:image" content="logo.png">', '<meta property="og:image" content="strategyclick-final-logo.svg">', 1)
+          text = text.replace('<img src="logo.png" alt="StrategyClick">', '<img src="strategyclick-final-logo.svg" alt="StrategyClick.in — Strategize. Click. Profit." style="width:220px;max-width:100%;height:auto;object-fit:contain;display:block;">', 1)
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "StrategyClick Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Replace site logos with final StrategyClick.in logo"
+          git push
