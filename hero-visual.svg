@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+<title id="t">StrategyClick digital marketing growth dashboard</title><desc id="d">Premium navy and gold marketing workspace with analytics dashboard, ad creative, social media metrics and branded coffee cup.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071a33"/><stop offset="1" stop-color="#020914"/></linearGradient>
+  <linearGradient id="gold" x1="0" x2="1"><stop stop-color="#f4c542"/><stop offset="1" stop-color="#d99c18"/></linearGradient>
+  <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#102b4d"/><stop offset="1" stop-color="#07182c"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000" flood-opacity=".42"/></filter>
+  <filter id="glow"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1200" height="675" rx="34" fill="url(#bg)"/>
+<circle cx="1030" cy="90" r="170" fill="#f4c542" opacity=".06" filter="url(#glow)"/>
+<circle cx="170" cy="585" r="190" fill="#1f69a7" opacity=".09" filter="url(#glow)"/>
+<g opacity=".12" fill="#f4c542">
+  <circle cx="52" cy="72" r="2"/><circle cx="72" cy="72" r="2"/><circle cx="92" cy="72" r="2"/><circle cx="52" cy="92" r="2"/><circle cx="72" cy="92" r="2"/><circle cx="92" cy="92" r="2"/>
+  <circle cx="1090" cy="560" r="2"/><circle cx="1110" cy="560" r="2"/><circle cx="1130" cy="560" r="2"/><circle cx="1090" cy="580" r="2"/><circle cx="1110" cy="580" r="2"/><circle cx="1130" cy="580" r="2"/>
+</g>
+
+<!-- laptop -->
+<g filter="url(#shadow)">
+  <rect x="105" y="80" width="690" height="438" rx="24" fill="#07111f" stroke="#294b73" stroke-width="3"/>
+  <rect x="126" y="101" width="648" height="390" rx="14" fill="url(#screen)"/>
+  <rect x="77" y="515" width="745" height="26" rx="13" fill="#172941"/>
+  <rect x="300" y="515" width="296" height="11" rx="5.5" fill="#314d6c"/>
+</g>
+
+<!-- screen header -->
+<text x="155" y="145" font-family="Poppins,Arial" font-size="23" font-weight="700" fill="#fff">Marketing Growth Dashboard</text>
+<text x="155" y="170" font-family="Poppins,Arial" font-size="12" fill="#91a9c0">Performance overview • StrategyClick.in</text>
+<rect x="650" y="123" width="92" height="30" rx="15" fill="#0d2746" stroke="#315377"/>
+<circle cx="670" cy="138" r="5" fill="#27d17f"/><text x="684" y="142" font-family="Poppins,Arial" font-size="11" fill="#c8d8e6">LIVE</text>
+
+<!-- KPI cards -->
+<g font-family="Poppins,Arial">
+  <g><rect x="155" y="195" width="138" height="86" rx="15" fill="#0d2542" stroke="#25486b"/><text x="174" y="220" font-size="11" fill="#7f9bb6">REACH</text><text x="174" y="252" font-size="26" font-weight="700" fill="#fff">128K</text><text x="174" y="270" font-size="10" fill="#27d17f">↑ 24.8%</text></g>
+  <g><rect x="307" y="195" width="138" height="86" rx="15" fill="#0d2542" stroke="#25486b"/><text x="326" y="220" font-size="11" fill="#7f9bb6">LEADS</text><text x="326" y="252" font-size="26" font-weight="700" fill="#fff">2,438</text><text x="326" y="270" font-size="10" fill="#27d17f">↑ 18.1%</text></g>
+  <g><rect x="459" y="195" width="138" height="86" rx="15" fill="#0d2542" stroke="#25486b"/><text x="478" y="220" font-size="11" fill="#7f9bb6">ROAS</text><text x="478" y="252" font-size="26" font-weight="700" fill="#fff">4.6x</text><text x="478" y="270" font-size="10" fill="#27d17f">↑ 12.2%</text></g>
+  <g><rect x="611" y="195" width="138" height="86" rx="15" fill="#0d2542" stroke="#25486b"/><text x="630" y="220" font-size="11" fill="#7f9bb6">CTR</text><text x="630" y="252" font-size="26" font-weight="700" fill="#fff">3.8%</text><text x="630" y="270" font-size="10" fill="#27d17f">↑ 9.5%</text></g>
+</g>
+
+<!-- chart -->
+<rect x="155" y="303" width="430" height="158" rx="18" fill="#0a2039" stroke="#244668"/>
+<text x="176" y="330" font-family="Poppins,Arial" font-size="12" fill="#9cb0c5">Growth trend</text>
+<g stroke="#24425f" stroke-width="1"><line x1="177" y1="355" x2="559" y2="355"/><line x1="177" y1="389" x2="559" y2="389"/><line x1="177" y1="423" x2="559" y2="423"/></g>
+<polyline points="180,429 223,413 266,421 309,382 352,394 395,351 438,364 481,323 524,339 557,312" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#f4c542"><circle cx="180" cy="429" r="4"/><circle cx="309" cy="382" r="4"/><circle cx="395" cy="351" r="4"/><circle cx="481" cy="323" r="4"/><circle cx="557" cy="312" r="4"/></g>
+
+<!-- channel cards -->
+<g font-family="Poppins,Arial">
+<rect x="603" y="303" width="146" height="48" rx="12" fill="#0d2542"/><circle cx="625" cy="327" r="10" fill="#1877f2"/><text x="645" y="324" font-size="10" fill="#87a2bb">META ADS</text><text x="645" y="340" font-size="13" font-weight="700" fill="#fff">+31%</text>
+<rect x="603" y="359" width="146" height="48" rx="12" fill="#0d2542"/><circle cx="625" cy="383" r="10" fill="#ff3b30"/><text x="645" y="380" font-size="10" fill="#87a2bb">GOOGLE ADS</text><text x="645" y="396" font-size="13" font-weight="700" fill="#fff">+22%</text>
+<rect x="603" y="415" width="146" height="48" rx="12" fill="#0d2542"/><circle cx="625" cy="439" r="10" fill="#25d366"/><text x="645" y="436" font-size="10" fill="#87a2bb">WHATSAPP</text><text x="645" y="452" font-size="13" font-weight="700" fill="#fff">+17%</text>
+</g>
+
+<!-- phone / ad creative -->
+<g filter="url(#shadow)">
+  <rect x="820" y="66" width="262" height="438" rx="34" fill="#09131f" stroke="#37526b" stroke-width="3"/>
+  <rect x="837" y="87" width="228" height="394" rx="24" fill="#0a1a2c"/>
+  <rect x="908" y="75" width="86" height="9" rx="4.5" fill="#26394d"/>
+</g>
+<text x="858" y="125" font-family="Poppins,Arial" font-size="12" fill="#8fa7bd">Sponsored</text>
+<rect x="858" y="148" width="186" height="171" rx="18" fill="#102b49"/>
+<circle cx="960" cy="221" r="58" fill="#173a60"/><path d="M916 260c28-59 66-84 115-82-21 28-32 58-34 93-30 5-57 1-81-11Z" fill="url(#gold)" opacity=".92"/>
+<text x="858" y="349" font-family="Poppins,Arial" font-size="21" font-weight="700" fill="#fff">Drive Growth.</text>
+<text x="858" y="375" font-family="Poppins,Arial" font-size="21" font-weight="700" fill="#f4c542">Convert Better.</text>
+<text x="858" y="402" font-family="Poppins,Arial" font-size="11" fill="#9bb0c3">Targeted campaigns built to generate</text>
+<text x="858" y="419" font-family="Poppins,Arial" font-size="11" fill="#9bb0c3">quality leads and measurable results.</text>
+<rect x="858" y="440" width="124" height="28" rx="14" fill="url(#gold)"/><text x="883" y="459" font-family="Poppins,Arial" font-size="11" font-weight="700" fill="#061a35">GET STARTED →</text>
+
+<!-- cup -->
+<g transform="translate(875 495)" filter="url(#shadow)">
+  <ellipse cx="93" cy="147" rx="112" ry="22" fill="#000" opacity=".35"/>
+  <path d="M20 20h150l-13 105c-3 24-18 37-42 37H75c-24 0-39-13-42-37Z" fill="#f7f9fb"/>
+  <path d="M170 49h27c32 0 32 61 0 61h-33" fill="none" stroke="#f7f9fb" stroke-width="18"/>
+  <ellipse cx="95" cy="20" rx="75" ry="18" fill="#dfe7ee"/><ellipse cx="95" cy="18" rx="66" ry="12" fill="#5b351f"/>
+  <text x="52" y="82" font-family="Poppins,Arial" font-size="17" font-weight="800" fill="#123666">Strategy</text><text x="124" y="82" font-family="Poppins,Arial" font-size="17" font-weight="800" fill="#e4ad2a">Click</text><text x="163" y="82" font-family="Poppins,Arial" font-size="8" font-weight="700" fill="#123666">.in</text>
+  <text x="62" y="101" font-family="Poppins,Arial" font-size="6.5" fill="#123666">Strategize. </text><text x="95" y="101" font-family="Poppins,Arial" font-size="6.5" fill="#e4ad2a">Click.</text><text x="112" y="101" font-family="Poppins,Arial" font-size="6.5" fill="#123666"> Profit.</text>
+</g>
+
+<text x="72" y="625" font-family="Poppins,Arial" font-size="12" letter-spacing="3" fill="#f4c542">STRATEGIZE. CLICK. PROFIT.</text>
+</svg>
