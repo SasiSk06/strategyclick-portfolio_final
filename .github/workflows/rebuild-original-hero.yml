@@ -1,0 +1,60 @@
+name: Rebuild Original Hero Image
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/rebuild-original-hero.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rebuild original hero image
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          files = [
+              'hero-dec-01.txt',
+              'hero-dec-02.txt',
+              'hero-dec-03.txt',
+              'hero-dec-big-04.txt',
+              'hero-dec-big-05.txt',
+              'hero-dec-big-06.txt',
+              'hero-dec-big-07.txt',
+              'hero-dec-big-08.txt',
+              'hero-dec-big-09.txt',
+          ]
+
+          values = []
+          for name in files:
+              text = Path(name).read_text(encoding='utf-8').strip()
+              if text:
+                  values.extend(int(v) for v in text.split(',') if v.strip())
+
+          data = bytes(values)
+          assert len(data) == 9688, f'Unexpected image size: {len(data)}'
+          assert data[:2] == b'\xff\xd8' and data[-2:] == b'\xff\xd9', 'Invalid JPEG markers'
+          Path('hero-original.jpg').write_bytes(data)
+
+          css_path = Path('about-abstract.css')
+          css = css_path.read_text(encoding='utf-8')
+          css = css.replace('background:url("hero-visual.svg") center/contain no-repeat!important;', 'background:url("hero-original.jpg?v=20260911-original") center/contain no-repeat!important;')
+          css_path.write_text(css, encoding='utf-8')
+          PY
+
+      - name: Commit final hero
+        run: |
+          git config user.name "StrategyClick Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add hero-original.jpg about-abstract.css
+          git diff --cached --quiet && exit 0
+          git commit -m "Use original StrategyClick hero image"
+          git push
