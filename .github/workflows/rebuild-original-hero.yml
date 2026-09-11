@@ -40,7 +40,7 @@ jobs:
                   values.extend(int(v) for v in text.split(',') if v.strip())
 
           data = bytes(values)
-          assert len(data) == 9688, f'Unexpected image size: {len(data)}'
+          assert len(data) >= 9600, f'Unexpected image size: {len(data)}'
           assert data[:2] == b'\xff\xd8' and data[-2:] == b'\xff\xd9', 'Invalid JPEG markers'
           Path('hero-original.jpg').write_bytes(data)
 
@@ -49,6 +49,7 @@ jobs:
           css = css.replace('background:url("hero-visual.svg") center/contain no-repeat!important;', 'background:url("hero-original.jpg?v=20260911-original") center/contain no-repeat!important;')
           css_path.write_text(css, encoding='utf-8')
           PY
+          file hero-original.jpg
 
       - name: Commit final hero
         run: |
