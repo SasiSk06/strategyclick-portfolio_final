@@ -23,56 +23,7 @@ jobs:
           css = Path('style.css')
           styles = css.read_text(encoding='utf-8')
           marker = '/* HERO FULL-WIDTH BACKGROUND VISUAL */'
-          block = '''
-
-/* HERO FULL-WIDTH BACKGROUND VISUAL */
-.hero{
-  position:relative!important;
-  isolation:isolate;
-  overflow:hidden!important;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background-image:url("hero-visual.webp");
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center right;
-  opacity:.96;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.05) 14%,rgba(0,0,0,.28) 30%,rgba(0,0,0,.72) 48%,#000 64%,#000 100%);
-  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.05) 14%,rgba(0,0,0,.28) 30%,rgba(0,0,0,.72) 48%,#000 64%,#000 100%);
-}
-.hero-grid{
-  position:relative!important;
-  z-index:2!important;
-  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)!important;
-}
-.hero-copy{
-  position:relative;
-  z-index:3;
-}
-.hero-art{
-  visibility:hidden!important;
-  pointer-events:none!important;
-}
-.hero-valuebar{
-  position:relative!important;
-  z-index:3!important;
-}
-@media(max-width:900px){
-  .hero::after{
-    background-position:68% center;
-    opacity:.72;
-    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.48) 35%,rgba(0,0,0,.88) 100%);
-    mask-image:linear-gradient(180deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.48) 35%,rgba(0,0,0,.88) 100%);
-  }
-  .hero-grid{grid-template-columns:1fr!important;}
-  .hero-art{display:none!important;}
-}
-'''
+          block = "\n\n/* HERO FULL-WIDTH BACKGROUND VISUAL */\n.hero{position:relative!important;isolation:isolate;overflow:hidden!important}\n.hero::after{content:\"\";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:url(\"hero-visual.webp\");background-repeat:no-repeat;background-size:cover;background-position:center right;opacity:.96;-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.05) 14%,rgba(0,0,0,.28) 30%,rgba(0,0,0,.72) 48%,#000 64%,#000 100%);mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.05) 14%,rgba(0,0,0,.28) 30%,rgba(0,0,0,.72) 48%,#000 64%,#000 100%)}\n.hero-grid{position:relative!important;z-index:2!important;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)!important}\n.hero-copy{position:relative;z-index:3}\n.hero-art{visibility:hidden!important;pointer-events:none!important}\n.hero-valuebar{position:relative!important;z-index:3!important}\n@media(max-width:900px){.hero::after{background-position:68% center;opacity:.72;-webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.48) 35%,rgba(0,0,0,.88) 100%);mask-image:linear-gradient(180deg,rgba(0,0,0,.22) 0%,rgba(0,0,0,.48) 35%,rgba(0,0,0,.88) 100%)}.hero-grid{grid-template-columns:1fr!important}.hero-art{display:none!important}}\n"
           if marker in styles:
               styles = styles.split(marker)[0].rstrip() + block
           else:
