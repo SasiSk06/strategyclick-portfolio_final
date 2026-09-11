@@ -139,7 +139,7 @@
   align-items:center!important;
   justify-content:center!important;
   overflow:hidden!important;
-  background:url("hero-visual.svg") center/contain no-repeat!important;
+  background:url("hero-original.jpg?v=20260911-original") center/contain no-repeat!important;
   border-radius:24px!important;
   filter:drop-shadow(0 35px 55px rgba(0,0,0,.35));
 }
