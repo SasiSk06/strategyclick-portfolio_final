@@ -147,7 +147,7 @@ if (contactForm) {
     event.preventDefault();
     const getValue = (id) => document.getElementById(id).value.trim();
     const message = `Hi StrategyClick,\n\nI'm interested in your digital marketing services.\n\nName: ${getValue("name")}\nBusiness: ${getValue("company") || "Not provided"}\nPhone: ${getValue("phone")}\nEmail: ${getValue("email") || "Not provided"}\nService: ${getValue("service")}\n\nRequirement:\n${getValue("message")}`;
-    const whatsappNumber = "919159596960";
+    const whatsappNumber = "919363057998";
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   });
 }
