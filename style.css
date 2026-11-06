@@ -1179,3 +1179,9 @@ main > .process:nth-of-type(even):after{
   .hero-copy h1{min-height:104px;}
   .hero-dots{contain:layout paint;}
 }
+
+/* Accessibility: readable gold accents on the white footer logo lockup. */
+.footer-brand-lockup .brand-final-name strong:nth-child(2),
+.footer-brand-lockup .brand-final-tagline em{color:#805300!important}
+/* Preserve the gold footer link on its dark background with clear contrast. */
+.footer a[href="/blog/"]{color:#ffe08a!important}
