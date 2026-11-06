@@ -80,7 +80,8 @@ const portfolioCards = document.querySelectorAll(".portfolio-card");
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const filter = button.dataset.filter;
-    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    filterButtons.forEach((btn) => { btn.classList.remove("active"); btn.setAttribute("aria-pressed", "false"); });
+    button.setAttribute("aria-pressed", "true");
     button.classList.add("active");
     portfolioCards.forEach((card) => {
       card.classList.toggle("hide", filter !== "all" && card.dataset.category !== filter);
